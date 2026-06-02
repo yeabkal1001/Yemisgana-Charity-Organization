@@ -1,192 +1,217 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HeroContent } from './hero-content';
-import { StatsSection } from './stats-section';
-import { EducationBadge } from './education-badge';
+import { motion } from 'framer-motion';
+import { ArrowRight, Zap } from 'lucide-react';
 
-const slides = [
-  {
-    id: 0,
-    image: '/images/hero-bg.png',
-    headline: <>Today, we build<br />schools.</>,
-    subHeadline: <>Tomorrow, we build<br />futures.</>,
-    location: 'Gurage Zone, Ethiopia',
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
   },
-  {
-    id: 1,
-    image: '/images/second-hero-bg.png',
-    headline: <>Better schools,</>,
-    subHeadline: <>brighter<br />tomorrows.</>,
-    location: 'Silti Woreda, SNNPR',
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8 },
   },
-  {
-    id: 2,
-    image: '/images/third-hero-bg.png',
-    headline: <>Every school<br />we build,</>,
-    subHeadline: <>a community<br />we uplift.</>,
-    location: 'Cheha District, Ethiopia',
-  },
-];
+};
 
 export function Hero() {
-  const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPrev(current);
-      setCurrent((c) => (c + 1) % slides.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [current]);
-
-  const goTo = (i: number) => {
-    if (i === current) return;
-    setPrev(current);
-    setCurrent(i);
-  };
-
   return (
-    <section id="hero" className="relative w-full h-screen bg-deep-forest overflow-hidden">
+    <section className="relative w-full overflow-hidden pt-20 pb-20 md:pt-32 md:pb-32 bg-white">
+      {/* Animated background gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-96 h-96 rounded-full bg-gradient-emerald-gold opacity-10 blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+          style={{ top: '-10%', right: '-5%' }}
+        />
+        <motion.div
+          className="absolute w-80 h-80 rounded-full bg-gradient-sunset opacity-5 blur-3xl"
+          animate={{
+            x: [0, -50, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+          style={{ bottom: '0%', left: '-5%' }}
+        />
+      </div>
 
-      {/* ── Background Images with Ken Burns ───────────── */}
-      {slides.map((slide, i) => (
-        <div
-          key={slide.id}
-          className="absolute inset-0"
-          style={{ zIndex: i === current ? 1 : 0, pointerEvents: 'none' }}
-        >
+      <div className="container px-4 md:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Content */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: i === current ? 1 : 0 }}
-            transition={{ duration: 1.4, ease: 'easeInOut' }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col gap-8"
           >
-            <motion.div
-              className="absolute inset-0"
-              initial={{ scale: 1.05 }}
-              animate={{ scale: i === current ? 1 : 1.05 }}
-              transition={{ duration: 7, ease: 'linear' }}
+            {/* Badge */}
+            <motion.div variants={itemVariants} className="inline-flex w-fit">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-orange-50 border border-emerald-200">
+                <Zap size={18} className="text-gold" />
+                <span className="text-sm font-semibold bg-gradient-emerald-gold bg-clip-text text-transparent">
+                  Changing Lives in Ethiopia
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Main Headline */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl md:text-6xl lg:text-7xl font-serif font-normal leading-tight"
             >
-              <Image
-                src={slide.image}
-                alt={`Slide ${i + 1}`}
-                fill
-                className="object-cover"
-                style={{ objectPosition: 'center 25%' }}
-                priority={i === 0}
-              />
+              <span className="block text-color-text-dark">Building Schools,</span>
+              <span className="block gradient-text mt-2">Creating Futures</span>
+            </motion.h1>
+
+            {/* Subheadline */}
+            <motion.p
+              variants={itemVariants}
+              className="text-lg md:text-xl text-color-text-light max-w-xl leading-relaxed"
+            >
+              We&apos;re constructing safe, modern schools across Ethiopia&apos;s Gurage Zone, transforming education and unlocking potential in thousands of young lives.
+            </motion.p>
+
+            {/* Stats Grid */}
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-3 gap-6 py-8 border-y border-gray-200"
+            >
+              {[
+                { number: '25+', label: 'Schools Built', accent: 'from-emerald-500 to-cyan-500' },
+                { number: '7K+', label: 'Lives Changed', accent: 'from-gold to-orange-500' },
+                { number: '100%', label: 'Impact Driven', accent: 'from-purple-500 to-pink-500' },
+              ].map((stat, idx) => (
+                <motion.div
+                  key={stat.label}
+                  className="flex flex-col gap-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: 0.8 + idx * 0.1,
+                    duration: 0.6,
+                  }}
+                >
+                  <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.accent} bg-clip-text text-transparent`}>
+                    {stat.number}
+                  </span>
+                  <span className="text-xs md:text-sm font-medium text-color-text-light uppercase tracking-wider">
+                    {stat.label}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4 pt-4"
+            >
+              <motion.a
+                href="#get-involved"
+                className="btn btn-primary btn-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Start Supporting
+                <ArrowRight size={20} />
+              </motion.a>
+              <motion.a
+                href="#about"
+                className="btn btn-secondary btn-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Learn Our Story
+              </motion.a>
             </motion.div>
           </motion.div>
-        </div>
-      ))}
 
-      {/* ── Cinematic overlays ─────────────────────────── */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to right, rgba(var(--color-deep-forest-rgb), 0.88) 0%, rgba(var(--color-deep-forest-rgb), 0.65) 40%, rgba(var(--color-deep-forest-rgb), 0.18) 70%, transparent 100%)',
-          zIndex: 2,
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to top, rgba(var(--color-deep-forest-rgb), 0.75) 0%, transparent 50%)',
-          zIndex: 2,
-        }}
-      />
+          {/* Right - Image with Interactive Elements */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative h-96 md:h-full min-h-[500px] lg:min-h-[600px]"
+          >
+            {/* Main Image */}
+            <div className="relative h-full rounded-2xl overflow-hidden shadow-2xl group">
+              <Image
+                src="/images/hero-bg.png"
+                alt="School building in Ethiopia"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-      {/* ── Content ────────────────────────────────────── */}
-      <div className="relative h-full flex flex-col" style={{ zIndex: 3 }}>
-
-        {/* Desktop layout */}
-        <div className="hidden md:block relative flex-1">
-          <AnimatePresence mode="wait">
-            <HeroContent
-              key={current}
-              headline={slides[current].headline}
-              subHeadline={slides[current].subHeadline}
-              slideNum={current + 1}
-              totalSlides={slides.length}
-              location={slides[current].location}
-            />
-          </AnimatePresence>
-          <StatsSection />
-          <EducationBadge />
-        </div>
-
-        {/* Mobile layout */}
-        <div className="md:hidden flex flex-col h-full">
-          <div className="flex-1 flex flex-col justify-center px-6 pt-24 pb-4">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-3"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className="w-5 h-px bg-lime" />
-                <p className="text-lime font-black text-[9px] tracking-[0.28em] uppercase">
-                  {slides[current].location}
+              {/* Floating Cards */}
+              <motion.div
+                className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <p className="text-sm font-bold text-color-text-dark">
+                  Safe Learning Spaces
                 </p>
-              </div>
-              <h1 className="text-white font-black leading-[0.92] tracking-tighter text-4xl">
-                {slides[current].headline}
-              </h1>
-              <h2 className="text-lime font-serif italic text-2xl leading-[1.05]">
-                {slides[current].subHeadline}
-              </h2>
-              <div className="h-px w-40 bg-gradient-to-r from-lime to-transparent mt-1" />
-              <p className="text-white/65 text-sm leading-[1.75] max-w-[300px] mt-1">
-                Yemisgana Charity Organization builds safe, modern schools for children in the Gurage Zone of Ethiopia.
-              </p>
-              <div className="flex items-center gap-4 mt-2">
-                <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light transition-all shadow-lg shadow-lime/25">
-                  Our Mission →
-                </button>
-                <button className="flex items-center gap-2 text-white/70 text-[12px] font-semibold hover:text-white transition-colors">
-                  <div className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center">
-                    <svg width="10" height="12" viewBox="0 0 10 12" fill="white">
-                      <path d="M1 1l8 5-8 5V1z" />
-                    </svg>
-                  </div>
-                  Watch Story
-                </button>
-              </div>
-            </motion.div>
-          </div>
-          <StatsSection />
+                <p className="text-xs text-color-text-light mt-1">
+                  In rural Ethiopia
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-6 right-6 bg-gradient-emerald-gold rounded-full p-3 text-white shadow-lg"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity }}
+              >
+                <Zap size={24} />
+              </motion.div>
+            </div>
+
+            {/* Decorative Elements */}
+            <motion.div
+              className="absolute -bottom-20 -right-20 w-64 h-64 bg-gradient-emerald-gold rounded-full opacity-5 blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+          </motion.div>
         </div>
       </div>
 
-      {/* ── Slide indicators ───────────────────────────── */}
-      <div className="absolute bottom-24 md:bottom-20 left-6 md:left-10 lg:left-14 flex items-center gap-2" style={{ zIndex: 4 }}>
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`rounded-full transition-all duration-500 ${
-              i === current
-                ? 'w-8 h-1.5 bg-lime'
-                : 'w-1.5 h-1.5 bg-white/35 hover:bg-white/60'
-            }`}
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <span className="text-xs font-medium text-color-text-light">Scroll to explore</span>
+        <motion.div
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-emerald-500 rounded-full flex items-center justify-center"
+        >
+          <motion.div
+            className="w-1 h-2 bg-emerald-500 rounded-full"
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
           />
-        ))}
-      </div>
-
-      {/* ── Animated scroll indicator ──────────────────── */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5" style={{ zIndex: 4 }}>
-        <p className="text-white/35 font-sans text-[8px] tracking-[0.3em] uppercase">Scroll</p>
-        <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-scroll-pulse" />
-      </div>
-
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

@@ -1,245 +1,181 @@
 "use client";
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Instagram, ArrowUpRight } from 'lucide-react';
+import { Heart, Users, Share2, ArrowRight, Zap } from 'lucide-react';
 
 const actions = [
   {
-    num: '01',
-    cta: 'Donate',
-    label: 'Donate Now',
-    desc: 'Every contribution goes directly to building and renovating schools. Your gift builds futures — brick by brick.',
+    icon: Heart,
+    title: 'Support Our Mission',
+    desc: 'Every donation directly funds construction, resources, and programs. Your gift transforms lives—one child at a time.',
+    cta: 'Donate Now',
     href: '#',
     featured: true,
-    glow: 'rgba(var(--color-lime-rgb), 0.25)',
+    color: 'from-coral to-red-500',
   },
   {
-    num: '02',
-    cta: 'Volunteer',
-    label: 'Give Your Time',
-    desc: 'Join our team on the ground or remotely. Skills, time, and passion are all welcome here.',
+    icon: Users,
+    title: 'Volunteer Your Skills',
+    desc: 'Join our movement—on the ground in Ethiopia or remotely. We need builders, teachers, designers, and passionate changemakers.',
+    cta: 'Get Involved',
     href: '#',
     featured: false,
-    glow: 'rgba(255, 255, 255, 0.05)',
+    color: 'from-blue-500 to-cyan-500',
   },
   {
-    num: '03',
-    cta: 'Spread the Word',
-    label: 'Amplify Our Mission',
-    desc: 'Share our story with your network. Awareness is the first brick in the foundation of change.',
+    icon: Share2,
+    title: 'Amplify Our Reach',
+    desc: 'Share our mission with your network. Awareness and word-of-mouth build the strongest foundation for collective change.',
+    cta: 'Share Our Story',
     href: '#',
     featured: false,
-    glow: 'rgba(255, 255, 255, 0.05)',
+    color: 'from-purple-500 to-pink-500',
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
 export function GetInvolved() {
   return (
-    <section id="get-involved" className="w-full bg-mid-forest relative overflow-hidden select-none border-t border-white/5 grid-bg">
+    <section id="get-involved" className="section bg-gradient-nocturne relative overflow-hidden text-white">
+      {/* Background accents */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-emerald-gold opacity-5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-ocean opacity-5 blur-3xl pointer-events-none" />
 
-      {/* Decorative vertical lines */}
-      <div className="absolute top-0 bottom-0 left-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-      <div className="absolute top-0 bottom-0 right-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-
-      {/* Background texture overlay */}
-      <div className="absolute inset-0 opacity-[0.015] pointer-events-none z-0">
-        <Image src="/images/hero-bg.png" alt="" fill className="object-cover" />
-      </div>
-
-      {/* ── Section Masthead ─────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 pt-24 md:pt-32 pb-12 md:pb-16 border-b border-white/5">
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
-          >
-            <p className="text-lime font-sans text-[10px] font-black tracking-[0.3em] uppercase mb-4 flex items-center gap-3">
-              <span className="w-6 h-px bg-lime" />
-              Get Involved
-            </p>
-            <h2
-              className="font-sans font-black text-white leading-[0.95] tracking-tighter"
-              style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
-            >
-              Join the <span className="font-serif italic font-normal text-lime">movement</span>.
-            </h2>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
-            className="text-white/40 font-sans text-xs md:text-sm max-w-xs leading-relaxed"
-          >
-            Together, we can build a future where every child in the Gurage Zone has access to quality education.
-          </motion.p>
-        </div>
-      </div>
-
-      {/* ── Three Action Cards Grid ─────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {actions.map((action, i) => (
-            <motion.a
-              key={action.num}
-              href={action.href}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className={`group relative rounded-3xl p-8 border flex flex-col justify-between overflow-hidden transition-all duration-500 cursor-pointer min-h-[360px] ${
-                action.featured
-                  ? 'bg-lime border-lime text-deep-forest hover:bg-lime-light hover:scale-[1.015] shadow-2xl'
-                  : 'bg-deep-forest/50 backdrop-blur-sm border-white/5 hover:border-white/15 hover:scale-[1.015]'
-              }`}
-              style={{
-                boxShadow: action.featured ? `0 15px 40px -15px ${action.glow}` : 'none'
-              }}
-            >
-              {/* Card Hover Glow (non-featured) */}
-              {!action.featured && (
-                <div 
-                  className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                  style={{
-                    background: `radial-gradient(350px circle at 50% 50%, rgba(var(--color-lime-rgb), 0.08), transparent 70%)`
-                  }}
-                />
-              )}
-
-              {/* Top Row: Number and Arrow */}
-              <div className="flex items-center justify-between relative z-10">
-                <span
-                  className={`font-serif font-black text-2xl select-none transition-colors duration-500 ${
-                    action.featured ? 'text-deep-forest/20' : 'text-white/10 group-hover:text-lime/35'
-                  }`}
-                >
-                  {action.num}
-                </span>
-
-                <div
-                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500 group-hover:scale-105 group-hover:rotate-45 ${
-                    action.featured
-                      ? 'border-deep-forest/15 text-deep-forest bg-deep-forest/5'
-                      : 'border-white/10 text-white/50 bg-white/5 group-hover:border-lime/30 group-hover:text-lime'
-                  }`}
-                >
-                  <ArrowUpRight size={15} strokeWidth={2.5} />
-                </div>
-              </div>
-
-              {/* Bottom: Heading & Text */}
-              <div className="relative z-10 mt-16">
-                <h3
-                  className={`font-sans font-black tracking-tight mb-3 transition-colors duration-300 ${
-                    action.featured ? 'text-deep-forest' : 'text-white group-hover:text-lime-light'
-                  }`}
-                  style={{ fontSize: 'clamp(1.5rem, 2.5vw, 1.8rem)' }}
-                >
-                  {action.cta}
-                </h3>
-                
-                <p
-                  className={`font-sans text-xs md:text-sm leading-relaxed transition-colors duration-300 ${
-                    action.featured ? 'text-deep-forest/75' : 'text-white/40 group-hover:text-white/70'
-                  }`}
-                >
-                  {action.desc}
-                </p>
-
-                <div 
-                  className={`inline-flex items-center gap-1.5 mt-5 text-[10px] font-black tracking-widest uppercase transition-colors duration-300 ${
-                    action.featured ? 'text-deep-forest' : 'text-lime'
-                  }`}
-                >
-                  {action.label} <span>→</span>
-                </div>
-              </div>
-
-              {/* Decorative line indicators */}
-              <div 
-                className={`absolute left-8 bottom-0 right-8 h-[2px] transition-opacity duration-500 opacity-0 group-hover:opacity-100 ${
-                  action.featured ? 'bg-deep-forest/20' : 'bg-gradient-to-r from-transparent via-lime to-transparent'
-                }`} 
-              />
-            </motion.a>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Decorative closing quote ──────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 py-16 md:py-24 border-t border-white/5 text-center">
-        
-        {/* Decorative Quote Mark */}
-        <div
-          className="font-serif text-lime/5 leading-none select-none absolute top-4 left-1/2 -translate-x-1/2"
-          style={{ fontSize: 'clamp(6rem, 16vw, 11rem)' }}
-          aria-hidden
+      <div className="container relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="text-center mb-16 md:mb-24 max-w-3xl mx-auto"
         >
-          “
-        </div>
+          <motion.div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-8 h-0.5 bg-gradient-to-r from-emerald-400 to-gold rounded-full" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-gold/20 border border-emerald-400/30">
+              <Zap size={16} className="text-emerald-300" />
+              <span className="text-sm font-semibold text-emerald-300">Join the Movement</span>
+            </span>
+            <div className="w-8 h-0.5 bg-gradient-to-r from-gold to-emerald-400 rounded-full" />
+          </motion.div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6">
+            Make a Difference <br />
+            <span className="bg-gradient-emerald-gold bg-clip-text text-transparent">Start Today</span>
+          </h2>
+          <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
+            Whether through financial support, volunteer action, or advocacy, there are multiple ways to be part of this transformative journey.
+          </p>
+        </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
+        {/* Action Cards */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
+        >
+          {actions.map((action, idx) => {
+            const Icon = action.icon;
+            return (
+              <motion.div
+                key={action.title}
+                variants={itemVariants}
+                className="group relative"
+              >
+                <div className={`relative overflow-hidden rounded-2xl transition-all duration-300 h-full flex flex-col ${
+                  action.featured
+                    ? 'bg-gradient-to-br from-emerald-600 to-emerald-800 border-2 border-emerald-400 shadow-2xl scale-100 md:scale-105'
+                    : 'bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:bg-white/10'
+                }`}>
+                  {/* Animated background for non-featured */}
+                  {!action.featured && (
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  )}
+
+                  <div className="p-8 flex flex-col h-full relative z-10">
+                    {/* Icon */}
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${action.color} p-3 mb-6 group-hover:scale-110 transition-transform flex-shrink-0`}>
+                      <Icon size={26} className="text-white w-full h-full" />
+                    </div>
+
+                    {/* Content */}
+                    <h3 className="text-2xl font-bold mb-3 flex-shrink-0">
+                      {action.title}
+                    </h3>
+                    <p className={`text-sm leading-relaxed flex-grow mb-6 ${
+                      action.featured ? 'text-emerald-100' : 'text-gray-300'
+                    }`}>
+                      {action.desc}
+                    </p>
+
+                    {/* CTA Button */}
+                    <motion.a
+                      href={action.href}
+                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-bold transition-all w-fit ${
+                        action.featured
+                          ? 'bg-white text-emerald-700 hover:bg-emerald-50'
+                          : 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white hover:shadow-lg'
+                      }`}
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {action.cta}
+                      <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                    </motion.a>
+                  </div>
+
+                  {/* Gradient border for featured */}
+                  {action.featured && (
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none" />
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="font-serif italic font-normal text-white/75 leading-[1.6] mx-auto relative z-10 max-w-3xl"
-          style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)' }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-12"
         >
-          Education is not a privilege. It is the{' '}
-          <span className="text-lime not-italic font-sans font-black tracking-wide uppercase text-[15px] md:text-[19px] ml-1">
-            foundation
-          </span>{' '}
-          upon which every child&apos;s future is built.
-        </motion.p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            Questions? We&apos;d Love to Connect
+          </h3>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Reach out to learn more about our programs, partnership opportunities, or how you can contribute to this mission.
+          </p>
+          <motion.a
+            href="mailto:contact@yemisgana.org"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-emerald-gold text-white font-bold hover:shadow-lg transition-all"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Contact Us
+            <ArrowRight size={20} />
+          </motion.a>
+        </motion.div>
       </div>
-
-      {/* ── Footer ──────────────────────────────────────────────── */}
-      <footer className="relative z-10 w-full border-t border-white/5 py-8 md:py-10 bg-deep-forest/40 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
-
-          {/* Logo & Title */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full overflow-hidden ring-1 ring-lime/25 flex-shrink-0">
-              <Image
-                src="/images/logo.png" alt="Yemsigana logo"
-                width={40} height={40}
-                className="w-full h-auto object-cover"
-                style={{ objectPosition: 'center 18%', transform: 'scale(1.15)', transformOrigin: 'center 30%' }}
-              />
-            </div>
-            <div>
-              <p className="text-white font-sans text-[11px] font-bold tracking-wide">የምስጋና በጎ አድራጎት ድርጅት</p>
-              <p className="text-white/35 font-sans text-[8px] tracking-[0.2em] uppercase mt-0.5">Yemsigana Charity</p>
-            </div>
-          </div>
-
-          {/* Copyrights and links */}
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-white/35 font-sans text-[10px] tracking-wider font-semibold">
-            <a href="#" className="hover:text-lime transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="hover:text-lime transition-colors duration-300">Terms of Service</a>
-            <span>© 2026 Yemsigana Charity. All rights reserved.</span>
-          </div>
-
-          {/* Social icons */}
-          <div className="flex items-center gap-3">
-            {[Facebook, Twitter, Instagram].map((Icon, i) => (
-              <a
-                key={i} href="#"
-                className="w-9 h-9 rounded-full bg-white/3 border border-white/10 flex items-center justify-center text-white/45 hover:bg-lime hover:text-deep-forest hover:border-lime hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <Icon size={13} strokeWidth={2} />
-              </a>
-            ))}
-          </div>
-
-        </div>
-      </footer>
-
     </section>
   );
 }

@@ -1,184 +1,139 @@
 "use client";
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Hammer, Paintbrush, BookOpen, ArrowUpRight } from 'lucide-react';
-import { useState } from 'react';
+import { Building, Users, Heart, Lightbulb, BookOpen, Globe } from 'lucide-react';
 
-const pillars = [
+const services = [
   {
-    num: '01',
-    title: 'School Construction',
-    tag: 'BUILDING NEW FUTURES',
-    image: '/images/second-hero-bg.png',
-    desc: 'We build entirely new schools in underserved communities where none exist — fully equipped hubs designed with children and teachers in mind, raising standards that match modern educational aspirations.',
-    icon: Hammer,
-    color: 'from-lime/20 to-transparent',
-    glow: 'rgba(var(--color-lime-rgb), 0.15)',
+    icon: Building,
+    title: 'School Infrastructure',
+    description: 'Constructing modern, safe, and sustainable educational facilities with electricity, water, and sanitation systems.',
+    color: 'from-blue-500 to-cyan-500',
   },
   {
-    num: '02',
-    title: 'School Renovation',
-    tag: 'TRANSFORMING OLD SPACES',
-    image: '/7871eddb-65fb-4e4d-ad88-02ecf4faf232.png',
-    desc: 'Mud walls become concrete. Dirt floors become smooth tiles. Broken roofs become shelters of possibility. We take what exists and transform it into a space worth studying in.',
-    icon: Paintbrush,
-    color: 'from-amber/20 to-transparent',
-    glow: 'rgba(var(--color-amber-light-rgb), 0.15)',
-  },
-  {
-    num: '03',
-    title: 'Educational Resources',
-    tag: 'EQUIPPING EVERY LEARNER',
-    image: '/images/third-hero-bg.png',
-    desc: 'Beyond bricks: libraries stocked with books, computer labs alive with curiosity, science kits, notebooks, and learning toolkits — everything a child needs to grow into tomorrow\'s leader.',
     icon: BookOpen,
-    color: 'from-sky/20 to-transparent',
-    glow: 'rgba(var(--color-sky-rgb), 0.15)',
+    title: 'Educational Resources',
+    description: 'Providing textbooks, learning materials, technology, and equipment to enhance the teaching and learning experience.',
+    color: 'from-emerald-500 to-teal-500',
+  },
+  {
+    icon: Users,
+    title: 'Teacher Training',
+    description: 'Offering professional development programs to empower educators with modern pedagogical methods and skills.',
+    color: 'from-gold to-orange-500',
+  },
+  {
+    icon: Heart,
+    title: 'Wellness Programs',
+    description: 'Supporting student health, nutrition, and mental wellness through comprehensive school health initiatives.',
+    color: 'from-coral to-red-500',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Skills Development',
+    description: 'Teaching practical skills, technology, and entrepreneurship to prepare students for the modern economy.',
+    color: 'from-purple-500 to-pink-500',
+  },
+  {
+    icon: Globe,
+    title: 'Community Engagement',
+    description: 'Building partnerships with local communities to ensure sustainable, locally-driven educational transformation.',
+    color: 'from-indigo-500 to-blue-500',
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 export function WhatWeDo() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section id="what-we-do" className="w-full bg-deep-forest relative select-none overflow-hidden border-b border-white/5 py-24 md:py-32 grid-bg">
+    <section id="what-we-do" className="section bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+      {/* Background accents */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-ocean opacity-5 blur-3xl pointer-events-none" />
 
-      {/* Decorative lines */}
-      <div className="absolute top-0 bottom-0 left-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-      <div className="absolute top-0 bottom-0 right-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-
-      {/* ── Section Masthead ─────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 mb-16 md:mb-20">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-lime font-sans text-[10px] font-black tracking-[0.3em] uppercase mb-4 flex items-center gap-3">
-              <span className="w-6 h-px bg-lime" />
-              Areas of Focus
-            </p>
-            <h2
-              className="text-white font-sans font-black leading-[0.95] tracking-tighter"
-              style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
-            >
-              How We <span className="text-lime font-serif italic font-normal">Uplift</span>.
-            </h2>
+      <div className="container relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="text-center mb-16 md:mb-24 max-w-3xl mx-auto"
+        >
+          <motion.div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-gold rounded-full" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-orange-50 border border-emerald-200">
+              <Lightbulb size={16} className="text-emerald-600" />
+              <span className="text-sm font-semibold text-color-text-dark">What We Do</span>
+            </span>
+            <div className="w-8 h-0.5 bg-gradient-to-r from-gold to-emerald-500 rounded-full" />
           </motion.div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-color-text-dark">
+            Comprehensive <span className="gradient-text">Education Solutions</span>
+          </h2>
+          <p className="text-lg text-color-text-light leading-relaxed max-w-2xl mx-auto">
+            We don&apos;t just build schools—we create complete educational ecosystems that transform communities and unlock human potential.
+          </p>
+        </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-white/40 font-sans text-xs md:text-sm leading-relaxed max-w-xs"
-          >
-            Three core pillars of impact driving structural and systemic educational change in the Gurage Zone.
-          </motion.p>
-        </div>
-      </div>
-
-      {/* ── Editorial Staggered Cards Grid ─────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {pillars.map((pillar, idx) => {
-            const Icon = pillar.icon;
-            const isHovered = hoveredIndex === idx;
-            
+        {/* Services Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {services.map((service, idx) => {
+            const Icon = service.icon;
             return (
               <motion.div
-                key={pillar.num}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true }}
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`relative rounded-3xl overflow-hidden min-h-[500px] flex flex-col justify-end p-8 border transition-all duration-700 ease-out cursor-pointer group ${
-                  isHovered 
-                    ? 'border-white/20 shadow-2xl scale-[1.02]' 
-                    : 'border-white/5'
-                }`}
-                style={{
-                  boxShadow: isHovered ? `0 15px 40px -10px ${pillar.glow}` : 'none'
-                }}
+                key={service.title}
+                variants={itemVariants}
+                className="group relative"
               >
-                {/* Background image container */}
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src={pillar.image}
-                    alt={pillar.title}
-                    fill
-                    className="object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-105"
-                  />
-                  
-                  {/* Radial gradient glow follow */}
-                  <div 
-                    className="absolute inset-0 bg-gradient-to-t from-deep-forest via-deep-forest/80 to-transparent transition-opacity duration-700 pointer-events-none"
-                    style={{ opacity: isHovered ? 0.95 : 0.9 }}
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-b ${pillar.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
-                </div>
+                {/* Card */}
+                <div className="relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-emerald-200 transition-all duration-300 h-full flex flex-col overflow-hidden">
+                  {/* Animated background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Content Container (lies above images) */}
-                <div className="relative z-10 flex flex-col h-full justify-between">
-                  
-                  {/* Top line with Icon and Number */}
-                  <div className="flex items-center justify-between">
-                    <span 
-                      className="font-serif font-black text-lime/25 leading-none transition-colors duration-500 group-hover:text-lime/50"
-                      style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
-                    >
-                      {pillar.num}
-                    </span>
-                    
-                    <div 
-                      className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 transition-all duration-500 group-hover:bg-lime group-hover:text-deep-forest group-hover:border-lime group-hover:rotate-12"
-                    >
-                      <Icon size={18} strokeWidth={1.5} />
-                    </div>
+                  {/* Icon */}
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.color} p-3 mb-6 group-hover:scale-110 transition-transform relative z-10`}>
+                    <Icon size={28} className="text-white w-full h-full" />
                   </div>
 
-                  {/* Bottom Text Details */}
-                  <div className="mt-20">
-                    <p className="text-lime font-sans text-[8px] font-black tracking-[0.25em] mb-2">
-                      {pillar.tag}
-                    </p>
-                    
-                    <h3 
-                      className="text-white font-sans font-black tracking-tight leading-[1.1] mb-4 transition-colors duration-300 group-hover:text-lime-light"
-                      style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)' }}
-                    >
-                      {pillar.title}
-                    </h3>
-                    
-                    {/* Animated divider */}
-                    <div className="h-px bg-white/10 w-full mb-4 group-hover:bg-lime/30 transition-colors duration-500" />
-                    
-                    <p className="text-white/50 font-sans text-xs md:text-sm leading-relaxed transition-colors duration-300 group-hover:text-white/80">
-                      {pillar.desc}
-                    </p>
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-color-text-dark mb-3 relative z-10">
+                    {service.title}
+                  </h3>
+                  <p className="text-color-text-light text-sm leading-relaxed relative z-10 flex-grow">
+                    {service.description}
+                  </p>
 
-                    {/* Bottom CTA icon */}
-                    <div className="flex items-center gap-2 mt-6 text-lime opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                      <span className="text-[10px] font-black tracking-widest uppercase">Explore Impact</span>
-                      <ArrowUpRight size={14} />
-                    </div>
+                  {/* Gradient Border */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left`} />
+
+                  {/* Arrow */}
+                  <div className="mt-6 flex items-center gap-2 text-emerald-600 font-semibold text-sm relative z-10 group-hover:gap-3 transition-all">
+                    <span>Learn more</span>
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </div>
-
                 </div>
-
-                {/* Decorative glow ring on hover */}
-                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-lime to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-
     </section>
   );
 }
