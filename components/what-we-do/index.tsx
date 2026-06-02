@@ -42,11 +42,11 @@ export function WhatWeDo() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="what-we-do" className="w-full bg-deep-forest relative select-none overflow-hidden border-b border-white/5 py-24 md:py-32 grid-bg">
+    <section id="what-we-do" className="w-full bg-[var(--color-bg-primary)] relative select-none overflow-hidden border-b border-[var(--color-border)] py-24 md:py-32 grid-bg">
 
       {/* Decorative lines */}
-      <div className="absolute top-0 bottom-0 left-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-      <div className="absolute top-0 bottom-0 right-12 w-px bg-white/5 pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 left-12 w-px bg-[var(--color-surface)] pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 right-12 w-px bg-[var(--color-surface)] pointer-events-none hidden md:block" />
 
       {/* ── Section Masthead ─────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 mb-16 md:mb-20">
@@ -62,7 +62,7 @@ export function WhatWeDo() {
               Areas of Focus
             </p>
             <h2
-              className="text-white font-sans font-black leading-[0.95] tracking-tighter"
+              className="text-[var(--color-text-primary)] font-sans font-black leading-[0.95] tracking-tighter"
               style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
             >
               How We <span className="text-lime font-serif italic font-normal">Uplift</span>.
@@ -74,7 +74,7 @@ export function WhatWeDo() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-white/40 font-sans text-xs md:text-sm leading-relaxed max-w-xs"
+            className="text-[var(--color-text-primary)]/40 font-sans text-xs md:text-sm leading-relaxed max-w-xs"
           >
             Three core pillars of impact driving structural and systemic educational change in the Gurage Zone.
           </motion.p>
@@ -100,7 +100,7 @@ export function WhatWeDo() {
                 className={`relative rounded-3xl overflow-hidden min-h-[500px] flex flex-col justify-end p-8 border transition-all duration-700 ease-out cursor-pointer group ${
                   isHovered 
                     ? 'border-white/20 shadow-2xl scale-[1.02]' 
-                    : 'border-white/5'
+                    : 'border-[var(--color-border)]'
                 }`}
                 style={{
                   boxShadow: isHovered ? `0 15px 40px -10px ${pillar.glow}` : 'none'
@@ -136,7 +136,7 @@ export function WhatWeDo() {
                     </span>
                     
                     <div 
-                      className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 transition-all duration-500 group-hover:bg-lime group-hover:text-deep-forest group-hover:border-lime group-hover:rotate-12"
+                      className="w-11 h-11 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-primary)]/60 transition-all duration-500 group-hover:bg-lime group-hover:text-deep-forest group-hover:border-lime group-hover:rotate-12"
                     >
                       <Icon size={18} strokeWidth={1.5} />
                     </div>
@@ -149,7 +149,7 @@ export function WhatWeDo() {
                     </p>
                     
                     <h3 
-                      className="text-white font-sans font-black tracking-tight leading-[1.1] mb-4 transition-colors duration-300 group-hover:text-lime-light"
+                      className="text-[var(--color-text-primary)] font-sans font-black tracking-tight leading-[1.1] mb-4 transition-colors duration-300 group-hover:text-lime-light"
                       style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)' }}
                     >
                       {pillar.title}
@@ -158,7 +158,7 @@ export function WhatWeDo() {
                     {/* Animated divider */}
                     <div className="h-px bg-white/10 w-full mb-4 group-hover:bg-lime/30 transition-colors duration-500" />
                     
-                    <p className="text-white/50 font-sans text-xs md:text-sm leading-relaxed transition-colors duration-300 group-hover:text-white/80">
+                    <p className="text-[var(--color-text-primary)]/50 font-sans text-xs md:text-sm leading-relaxed transition-colors duration-300 group-hover:text-[var(--color-text-primary)]/80">
                       {pillar.desc}
                     </p>
 

@@ -59,11 +59,11 @@ export function Approach() {
   }, [isDragging]);
 
   return (
-    <section id="approach" className="w-full bg-deep-forest relative overflow-hidden select-none border-b border-white/5 py-24 md:py-32 grid-bg">
+    <section id="approach" className="w-full bg-[var(--color-bg-primary)] relative overflow-hidden select-none border-b border-[var(--color-border)] py-24 md:py-32 grid-bg">
 
       {/* Decorative vertical lines */}
-      <div className="absolute top-0 bottom-0 left-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-      <div className="absolute top-0 bottom-0 right-12 w-px bg-white/5 pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 left-12 w-px bg-[var(--color-surface)] pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 right-12 w-px bg-[var(--color-surface)] pointer-events-none hidden md:block" />
 
       {/* ── Section Masthead ─────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 mb-16">
@@ -84,7 +84,7 @@ export function Approach() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="font-sans font-black text-white leading-[0.95] tracking-tighter"
+            className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
           >
             Why the <span className="font-serif italic font-normal text-lime">Gurage Zone</span>?
@@ -95,7 +95,7 @@ export function Approach() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-white/40 font-sans text-xs md:text-sm max-w-sm leading-relaxed"
+            className="text-[var(--color-text-primary)]/40 font-sans text-xs md:text-sm max-w-sm leading-relaxed"
           >
             We target resources where the need is greatest, transforming dilapidated classrooms into modern, structural hubs of opportunity.
           </motion.p>
@@ -109,7 +109,7 @@ export function Approach() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="relative w-full h-[55vh] md:h-[65vh] rounded-3xl overflow-hidden select-none border border-white/10 cursor-ew-resize"
+          className="relative w-full h-[55vh] md:h-[65vh] rounded-3xl overflow-hidden select-none border border-[var(--color-border)] cursor-ew-resize"
           ref={sliderRef}
           onMouseMove={handleMouseMove}
           onTouchMove={handleTouchMove}
@@ -127,7 +127,7 @@ export function Approach() {
               priority
             />
             {/* Cinematic overlay */}
-            <div className="absolute inset-0 bg-deep-forest/25" />
+            <div className="absolute inset-0 bg-[var(--color-bg-primary)]/25" />
           </div>
 
           {/* After Image (Top Clip Layer) */}
@@ -151,7 +151,7 @@ export function Approach() {
 
           {/* Floating Badges */}
           <div className="absolute top-6 left-6 z-20 pointer-events-none">
-            <span className="px-3.5 py-2 text-[9px] font-black uppercase tracking-[0.25em] bg-red/90 text-white rounded-full border border-red/20 shadow-lg shadow-black/25">
+            <span className="px-3.5 py-2 text-[9px] font-black uppercase tracking-[0.25em] bg-red/90 text-[var(--color-text-primary)] rounded-full border border-red/20 shadow-lg shadow-black/25">
               Before Renovation
             </span>
           </div>
@@ -165,9 +165,9 @@ export function Approach() {
           {/* Centered Instructions Badge when not dragging */}
           {!isDragging && sliderPosition === 50 && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-              <div className="px-4 py-2.5 rounded-2xl bg-deep-forest/80 backdrop-blur-md border border-white/10 flex items-center gap-2.5 shadow-2xl scale-100 animate-pulse">
+              <div className="px-4 py-2.5 rounded-2xl bg-[var(--color-bg-primary)]/80 backdrop-blur-md border border-[var(--color-border)] flex items-center gap-2.5 shadow-2xl scale-100 animate-pulse">
                 <ArrowRightLeft size={13} className="text-lime animate-bounce" />
-                <span className="text-white text-[10px] font-bold tracking-widest uppercase">Drag to Compare</span>
+                <span className="text-[var(--color-text-primary)] text-[10px] font-bold tracking-widest uppercase">Drag to Compare</span>
               </div>
             </div>
           )}
@@ -190,22 +190,22 @@ export function Approach() {
       </div>
 
       {/* ── Context Paragraphs ───────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 border-b border-white/5 pb-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 border-b border-[var(--color-border)] pb-16">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-white/80 font-sans text-base md:text-lg leading-[1.8]"
+          className="text-[var(--color-text-primary)]/80 font-sans text-base md:text-lg leading-[1.8]"
         >
-          Located in the <strong className="text-white font-semibold">SNNPR region of Ethiopia</strong>, the Gurage Zone is home to a vibrant community with a rich cultural heritage. Yet, the region faces significant educational hurdles: overcrowded classrooms, failing infrastructure, and lack of sanitations.
+          Located in the <strong className="text-[var(--color-text-primary)] font-semibold">SNNPR region of Ethiopia</strong>, the Gurage Zone is home to a vibrant community with a rich cultural heritage. Yet, the region faces significant educational hurdles: overcrowded classrooms, failing infrastructure, and lack of sanitations.
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           viewport={{ once: true }}
-          className="text-white/45 font-sans text-sm md:text-base leading-[1.8]"
+          className="text-[var(--color-text-primary)]/45 font-sans text-sm md:text-base leading-[1.8]"
         >
           By establishing operations in Gurage, Yemisgana builds bridges between local community councils, government organizations, and international donors. We believe that safe educational ecosystems are the foundation of sustainable socioeconomic empowerment.
         </motion.p>
@@ -213,7 +213,7 @@ export function Approach() {
 
       {/* ── Three Approach Pillars ───────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 border border-white/5 rounded-3xl overflow-hidden bg-deep-forest/40 backdrop-blur-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 border border-[var(--color-border)] rounded-3xl overflow-hidden bg-[var(--color-bg-primary)]/40 backdrop-blur-sm">
           {pillars.map((pillar, i) => (
             <motion.div
               key={pillar.num}
@@ -233,7 +233,7 @@ export function Approach() {
 
               {/* Title */}
               <h3
-                className="font-sans font-black text-white leading-[1.1] tracking-tight mb-4 group-hover:text-lime-light transition-colors duration-400"
+                className="font-sans font-black text-[var(--color-text-primary)] leading-[1.1] tracking-tight mb-4 group-hover:text-lime-light transition-colors duration-400"
                 style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)' }}
               >
                 {pillar.title}
@@ -243,7 +243,7 @@ export function Approach() {
               <div className="h-px w-8 bg-lime/20 group-hover:w-16 group-hover:bg-lime transition-all duration-500 mb-5" />
 
               {/* Desc */}
-              <p className="text-white/50 font-sans text-xs md:text-sm leading-[1.75] group-hover:text-white/70 transition-colors duration-300">
+              <p className="text-[var(--color-text-primary)]/50 font-sans text-xs md:text-sm leading-[1.75] group-hover:text-[var(--color-text-primary)]/70 transition-colors duration-300">
                 {pillar.desc}
               </p>
             </motion.div>

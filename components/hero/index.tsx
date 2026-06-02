@@ -50,7 +50,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="relative w-full h-screen bg-deep-forest overflow-hidden">
+    <section id="hero" className="relative w-full h-screen bg-[var(--color-bg-primary)] overflow-hidden">
 
       {/* ── Background Images with Ken Burns ───────────── */}
       {slides.map((slide, i) => (
@@ -88,14 +88,14 @@ export function Hero() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to right, rgba(var(--color-deep-forest-rgb), 0.88) 0%, rgba(var(--color-deep-forest-rgb), 0.65) 40%, rgba(var(--color-deep-forest-rgb), 0.18) 70%, transparent 100%)',
+          background: 'linear-gradient(to right, rgba(var(--color-hero-overlay-rgb), 0.88) 0%, rgba(var(--color-hero-overlay-rgb), 0.65) 40%, rgba(var(--color-hero-overlay-rgb), 0.18) 70%, transparent 100%)',
           zIndex: 2,
         }}
       />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, rgba(var(--color-deep-forest-rgb), 0.75) 0%, transparent 50%)',
+          background: 'linear-gradient(to top, rgba(var(--color-hero-overlay-rgb), 0.75) 0%, transparent 50%)',
           zIndex: 2,
         }}
       />
@@ -175,7 +175,7 @@ export function Hero() {
             className={`rounded-full transition-all duration-500 ${
               i === current
                 ? 'w-8 h-1.5 bg-lime'
-                : 'w-1.5 h-1.5 bg-white/35 hover:bg-white/60'
+                : 'w-1.5 h-1.5 bg-[var(--color-text-muted-35)] hover:bg-[var(--color-text-muted-60)]'
             }`}
           />
         ))}
@@ -183,8 +183,8 @@ export function Hero() {
 
       {/* ── Animated scroll indicator ──────────────────── */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5" style={{ zIndex: 4 }}>
-        <p className="text-white/35 font-sans text-[8px] tracking-[0.3em] uppercase">Scroll</p>
-        <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-scroll-pulse" />
+        <p className="text-[var(--color-text-muted-35)] font-sans text-[8px] tracking-[0.3em] uppercase">Scroll</p>
+        <div className="w-px h-8 bg-gradient-to-b from-[var(--color-text-muted-40)] to-transparent animate-scroll-pulse" />
       </div>
 
     </section>

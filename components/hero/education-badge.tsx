@@ -51,7 +51,7 @@ export function EducationBadge() {
       {/* Scroll to explore */}
       <div className="flex flex-col items-center gap-1 mt-4">
         <p className="text-lime text-[9px] font-bold tracking-[0.2em] uppercase">Scroll</p>
-        <p className="text-white/70 text-[9px] font-semibold tracking-[0.15em] uppercase">To Explore</p>
+        <p className="text-[var(--color-text-primary)]/70 text-[9px] font-semibold tracking-[0.15em] uppercase">To Explore</p>
         <div className="relative w-[2px] h-6 mt-1 overflow-hidden rounded-full bg-white/20">
           <div className="absolute inset-x-0 top-0 h-1/2 bg-lime rounded-full animate-bounce" />
         </div>

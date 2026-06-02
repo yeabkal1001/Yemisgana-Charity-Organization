@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Menu, ArrowRight } from 'lucide-react';
+import { X, Menu, ArrowRight, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -18,6 +18,22 @@ export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("");
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    // Initialize theme from localStorage
+    const stored = localStorage.getItem('theme') as 'dark' | 'light' | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = stored || (prefersDark ? 'dark' : 'light');
+    setTheme(initialTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -63,13 +79,13 @@ export function Nav() {
         style={{ width: `${scrollProgress}%` }}
       />
 
-      <motion.nav
+        <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[9000] transition-all duration-500 ${
           scrolled
-            ? 'bg-deep-forest/85 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/40 py-3 md:py-4'
+            ? 'bg-[rgba(var(--color-bg-primary),0.85)] backdrop-blur-xl border-b border-[var(--color-border)] shadow-2xl shadow-black/40 py-3 md:py-4'
             : 'bg-transparent py-5 md:py-7'
         }`}
       >
@@ -88,10 +104,10 @@ export function Nav() {
               />
             </div>
             <div className="hidden sm:block leading-tight">
-              <p className="text-white text-[11px] font-bold tracking-wide group-hover:text-lime-light transition-colors duration-300">
+              <p className="text-[var(--color-text-primary)] text-[11px] font-bold tracking-wide group-hover:text-lime-light transition-colors duration-300">
                 የምስጋና በጎ አድራጎት ድርጅት
               </p>
-              <p className="text-white/45 text-[8px] tracking-[0.2em] uppercase mt-0.5 group-hover:text-white/60 transition-colors duration-300">
+              <p className="text-[var(--color-text-muted-45)] text-[8px] tracking-[0.2em] uppercase mt-0.5 group-hover:text-[var(--color-text-muted-60)] transition-colors duration-300">
                 Yemsigana Charity
               </p>
             </div>
@@ -106,7 +122,7 @@ export function Nav() {
                   key={link.label}
                   href={link.href}
                   className={`relative text-[13px] font-semibold tracking-wider uppercase transition-colors duration-300 py-1.5 px-0.5 group ${
-                    isActive ? 'text-lime font-bold' : 'text-white/60 hover:text-white'
+                    isActive ? 'text-lime font-bold' : 'text-[var(--color-text-muted-60)] hover:text-[var(--color-text-primary)]'
                   }`}
                 >
                   {link.label}
@@ -119,7 +135,7 @@ export function Nav() {
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   ) : (
-                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white/40 group-hover:w-full transition-all duration-300" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-text-muted-40)] group-hover:w-full transition-all duration-300" />
                   )}
                 </a>
               );
@@ -127,19 +143,27 @@ export function Nav() {
           </div>
 
           {/* Right Action */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <motion.a
               href="#get-involved"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] uppercase tracking-wider rounded-full hover:bg-lime-light transition-all duration-300 shadow-[0_4px_20px_rgba(var(--color-lime-rgb),0.25)] hover:shadow-[0_4px_25px_rgba(var(--color-lime-rgb),0.4)]"
+              className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-lime text-[var(--color-bg-primary)] font-black text-[12px] uppercase tracking-wider rounded-full hover:bg-lime-light transition-all duration-300 shadow-[0_4px_20px_rgba(var(--color-lime-rgb),0.25)] hover:shadow-[0_4px_25px_rgba(var(--color-lime-rgb),0.4)]"
             >
               Donate Now <ArrowRight size={12} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform duration-300" />
             </motion.a>
 
             <button
+              onClick={toggleTheme}
+              className="theme-toggle text-[var(--color-text-primary)]"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+
+            <button
               onClick={() => setMenuOpen(true)}
-              className="w-10 h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:border-lime/40 hover:bg-lime/10 hover:text-lime hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-sm flex items-center justify-center text-[var(--color-text-primary)] hover:border-lime/40 hover:bg-lime/10 hover:text-lime hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
               aria-label="Open menu"
             >
               <Menu size={16} />
@@ -156,7 +180,7 @@ export function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[9500] bg-deep-forest/98 backdrop-blur-3xl flex flex-col px-8 py-8"
+            className="fixed inset-0 z-[9500] bg-[rgba(var(--color-bg-primary),0.98)] backdrop-blur-3xl flex flex-col px-8 py-8"
           >
             {/* Header in menu */}
             <div className="flex items-center justify-between mb-16 max-w-7xl mx-auto w-full">
@@ -171,13 +195,13 @@ export function Nav() {
                   />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-white text-[11px] font-bold">የምስጋና በጎ አድራጎት ድርጅት</p>
-                  <p className="text-white/45 text-[8px] tracking-[0.18em] uppercase mt-0.5">Yemsigana Charity</p>
+                  <p className="text-[var(--color-text-primary)] text-[11px] font-bold">የምስጋና በጎ አድራጎት ድርጅት</p>
+                  <p className="text-[var(--color-text-muted-45)] text-[8px] tracking-[0.18em] uppercase mt-0.5">Yemsigana Charity</p>
                 </div>
               </div>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-lime hover:text-lime hover:bg-lime/10 hover:scale-105 transition-all duration-300 cursor-pointer"
+                className="w-10 h-10 rounded-full border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-primary)] hover:border-lime hover:text-lime hover:bg-lime/10 hover:scale-105 transition-all duration-300 cursor-pointer"
                 aria-label="Close menu"
               >
                 <X size={16} />
@@ -198,11 +222,11 @@ export function Nav() {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     className={`font-black tracking-tight leading-none uppercase transition-all duration-300 flex items-center gap-4 group ${
-                      isActive ? 'text-lime font-black' : 'text-white/70 hover:text-lime-light'
+                      isActive ? 'text-lime font-black' : 'text-[var(--color-text-muted-70)] hover:text-lime-light'
                     }`}
                     style={{ fontSize: 'clamp(2rem, 7vw, 3.2rem)' }}
                   >
-                    <span className="text-[14px] font-serif font-normal italic text-white/30 group-hover:text-lime/50 transition-colors duration-300">
+                    <span className="text-[14px] font-serif font-normal italic text-[var(--color-text-muted-30)] group-hover:text-lime/50 transition-colors duration-300">
                       0{i + 1}
                     </span>
                     {link.label}
@@ -212,14 +236,14 @@ export function Nav() {
             </nav>
 
             {/* Footer in menu */}
-            <div className="pt-8 border-t border-white/5 flex items-center justify-between max-w-7xl mx-auto w-full">
-              <p className="text-white/20 text-[10px] tracking-widest uppercase font-semibold">
+            <div className="pt-8 border-t border-[var(--color-border)] flex items-center justify-between max-w-7xl mx-auto w-full">
+              <p className="text-[var(--color-text-muted-20)] text-[10px] tracking-widest uppercase font-semibold">
                 © 2026 Yemsigana Charity
               </p>
               <a
                 href="#get-involved"
                 onClick={() => setMenuOpen(false)}
-                className="px-6 py-3 bg-lime text-deep-forest font-bold text-[12px] uppercase tracking-wider rounded-full hover:bg-lime-light transition-all duration-300 shadow-[0_4px_15px_rgba(var(--color-lime-rgb),0.2)]"
+                className="px-6 py-3 bg-lime text-[var(--color-bg-primary)] font-bold text-[12px] uppercase tracking-wider rounded-full hover:bg-lime-light transition-all duration-300 shadow-[0_4px_15px_rgba(var(--color-lime-rgb),0.2)]"
               >
                 Donate Now →
               </a>

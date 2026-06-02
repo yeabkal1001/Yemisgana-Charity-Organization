@@ -41,12 +41,22 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${barlow.variable} ${dmSerifDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${barlow.variable} ${dmSerifDisplay.variable}`} data-theme="dark" suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                // Initialize theme before first paint
+                function initTheme() {
+                  const stored = localStorage.getItem('theme');
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const theme = stored || (prefersDark ? 'dark' : 'light');
+                  document.documentElement.setAttribute('data-theme', theme);
+                }
+                initTheme();
+
+                // Clean rtrvr attributes
                 function clean(el) {
                   if (!el) return;
                   const attrs = el.attributes;

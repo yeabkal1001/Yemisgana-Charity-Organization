@@ -27,7 +27,7 @@ export function StatsSection() {
   return (
     <div className="absolute bottom-0 left-0 right-0 z-10" style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
       {/* Stats bar */}
-      <div className="backdrop-blur-md bg-black/40 border-t border-white/10 px-6 md:px-10 lg:px-14 py-3.5 md:py-4">
+      <div className="backdrop-blur-md bg-[rgba(0,0,0,0.4)] border-t border-[var(--color-border)] px-6 md:px-10 lg:px-14 py-3.5 md:py-4">
         <div className="flex items-center gap-6 md:gap-10 lg:gap-14 max-w-3xl">
           {stats.map((stat, idx) => {
             const Icon = stat.icon;
@@ -38,7 +38,7 @@ export function StatsSection() {
                   <p className="text-lime font-bold text-[13px] md:text-sm lg:text-base leading-tight">
                     {stat.number}
                   </p>
-                  <p className="text-white/60 text-[9px] md:text-[10px] leading-tight whitespace-pre-line mt-0.5">
+                  <p className="text-[var(--color-text-muted-60)] text-[9px] md:text-[10px] leading-tight whitespace-pre-line mt-0.5">
                     {stat.label}
                   </p>
                 </div>
