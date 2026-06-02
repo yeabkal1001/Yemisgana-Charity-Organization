@@ -1,0 +1,192 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme {
+  --font-sans: var(--font-barlow), 'Barlow', sans-serif;
+  --font-serif: var(--font-dm-serif), 'DM Serif Display', Georgia, serif;
+  --font-inter: var(--font-barlow), 'Barlow', sans-serif;
+  --font-playfair: var(--font-dm-serif), 'DM Serif Display', Georgia, serif;
+
+  --color-forest: var(--color-forest);
+  --color-mid-forest: var(--color-mid-forest);
+  --color-deep-forest: var(--color-deep-forest);
+  --color-cream: var(--color-cream);
+  --color-parchment: var(--color-parchment);
+  --color-lime: var(--color-lime);
+  --color-lime-light: var(--color-lime-light);
+  --color-amber: var(--color-amber);
+  --color-amber-light: var(--color-amber-light);
+  --color-olive: var(--color-olive);
+  --color-purple: var(--color-purple);
+  --color-sky: var(--color-sky);
+  --color-red: var(--color-red);
+}
+
+/* ─── Design Tokens ──────────────────────────────────────────── */
+:root {
+  --color-forest:      #0a1e12;
+  --color-mid-forest:   #08120a;
+  --color-deep-forest: #030a03;
+  --color-cream:       #f5f2eb;
+  --color-parchment:   #fcfbf9;
+  --color-lime:        #a3e635;
+  --color-lime-light:  #bef264;
+  --color-amber:       #d97706;
+  --color-amber-light: #f59e0b;
+  --color-olive:       #2d5a1b;
+  --color-purple:      #a855f7;
+  --color-sky:         #38bdf8;
+  --color-red:         #ef4444;
+
+  /* RGB equivalents for manual color overlays and custom inline elements */
+  --color-forest-rgb:      10, 30, 18;
+  --color-mid-forest-rgb:   8, 18, 10;
+  --color-deep-forest-rgb: 3, 10, 3;
+  --color-cream-rgb:       245, 242, 235;
+  --color-parchment-rgb:   252, 251, 249;
+  --color-lime-rgb:        163, 230, 53;
+  --color-lime-light-rgb:  190, 242, 100;
+  --color-amber-rgb:       217, 119, 6;
+  --color-amber-light-rgb: 245, 158, 11;
+  --color-olive-rgb:       45, 90, 27;
+  --color-purple-rgb:      168, 85, 247;
+  --color-sky-rgb:         56, 189, 248;
+  --color-red-rgb:         239, 68, 68;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-deep-forest);
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-deep-forest);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--color-deep-forest); }
+  ::-webkit-scrollbar-thumb { background: var(--color-lime); border-radius: 2px; }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Film grain noise */
+  .noise-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-lime), var(--color-lime-light));
+    transform-origin: left;
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+  /* Badge spin */
+  @keyframes badge-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-badge-spin { animation: badge-spin 20s linear infinite; }
+
+  /* Scroll pulse */
+  @keyframes scroll-pulse {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50%       { transform: translateY(6px); opacity: 0.35; }
+  }
+  .animate-scroll-pulse { animation: scroll-pulse 1.8s ease-in-out infinite; }
+
+  /* Fade up */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  /* Marquee ticker */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .animate-marquee { animation: marquee 28s linear infinite; }
+  .animate-marquee:hover { animation-play-state: paused; }
+
+  /* Ken Burns subtle zoom */
+  @keyframes ken-burns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.06); }
+  }
+  .animate-ken-burns {
+    animation: ken-burns 8s ease-out forwards;
+  }
+
+  /* Count-up shimmer */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Grid Background utility */
+  .grid-bg {
+    background-size: 60px 60px;
+    background-image: 
+      linear-gradient(to right, rgba(var(--color-lime-rgb), 0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(var(--color-lime-rgb), 0.025) 1px, transparent 1px);
+  }
+
+  /* Border glow class */
+  .glow-border {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .glow-border:hover {
+    border-color: rgba(var(--color-lime-rgb), 0.3);
+    box-shadow: 0 0 20px rgba(var(--color-lime-rgb), 0.05);
+  }
+
+  /* Stagger delays */
+  .delay-75  { animation-delay:  75ms; }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-150 { animation-delay: 150ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+}
+
