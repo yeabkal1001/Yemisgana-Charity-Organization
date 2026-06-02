@@ -2,38 +2,56 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, Zap } from 'lucide-react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.15,
       delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-
-    },
+    transition: { duration: 0.8 },
   },
 };
 
 export function Hero() {
   return (
-    <section id="hero" className="relative w-full bg-white overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-48 lg:pb-32">
-      <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
-          {/* Left: Content */}
+    <section className="relative w-full overflow-hidden pt-20 pb-20 md:pt-32 md:pb-32 bg-white">
+      {/* Animated background gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-96 h-96 rounded-full bg-gradient-emerald-gold opacity-10 blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+          style={{ top: '-10%', right: '-5%' }}
+        />
+        <motion.div
+          className="absolute w-80 h-80 rounded-full bg-gradient-sunset opacity-5 blur-3xl"
+          animate={{
+            x: [0, -50, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+          style={{ bottom: '0%', left: '-5%' }}
+        />
+      </div>
+
+      <div className="container px-4 md:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -41,76 +59,79 @@ export function Hero() {
             className="flex flex-col gap-8"
           >
             {/* Badge */}
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-3 w-fit">
-              <div className="w-8 h-0.5 bg-color-accent-primary rounded-full" />
-              <span className="badge text-color-accent-primary bg-color-accent-surface">Our Mission</span>
+            <motion.div variants={itemVariants} className="inline-flex w-fit">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-orange-50 border border-emerald-200">
+                <Zap size={18} className="text-gold" />
+                <span className="text-sm font-semibold bg-gradient-emerald-gold bg-clip-text text-transparent">
+                  Changing Lives in Ethiopia
+                </span>
+              </div>
             </motion.div>
 
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl md:text-6xl lg:text-7xl font-serif font-normal leading-tight text-color-text-primary tracking-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-serif font-normal leading-tight"
             >
-              Building Schools,
-              <br />
-              <span className="text-color-accent-primary">Changing Lives</span>
+              <span className="block text-color-text-dark">Building Schools,</span>
+              <span className="block gradient-text mt-2">Creating Futures</span>
             </motion.h1>
 
-            {/* Description */}
+            {/* Subheadline */}
             <motion.p
               variants={itemVariants}
-              className="text-lg text-color-text-secondary leading-relaxed max-w-2xl"
+              className="text-lg md:text-xl text-color-text-light max-w-xl leading-relaxed"
             >
-              Yemisgana Charity Organization builds safe, modern schools across Ethiopia&apos;s Gurage Zone, creating inspiring learning environments where every child can thrive and reach their full potential.
+              We&apos;re constructing safe, modern schools across Ethiopia&apos;s Gurage Zone, transforming education and unlocking potential in thousands of young lives.
             </motion.p>
 
             {/* Stats Grid */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-3 gap-8 py-8 border-y border-color-border-light"
+              className="grid grid-cols-3 gap-6 py-8 border-y border-gray-200"
             >
               {[
-                { value: '25+', label: 'Schools Built' },
-                { value: '7K+', label: 'Students Impacted' },
-                { value: '100%', label: 'Mission Focused' },
+                { number: '25+', label: 'Schools Built', accent: 'from-emerald-500 to-cyan-500' },
+                { number: '7K+', label: 'Lives Changed', accent: 'from-gold to-orange-500' },
+                { number: '100%', label: 'Impact Driven', accent: 'from-purple-500 to-pink-500' },
               ].map((stat, idx) => (
                 <motion.div
                   key={stat.label}
                   className="flex flex-col gap-2"
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    delay: 0.6 + idx * 0.1,
-                    duration: 0.5,
+                    delay: 0.8 + idx * 0.1,
+                    duration: 0.6,
                   }}
                 >
-                  <span className="text-3xl md:text-4xl font-serif font-normal text-color-accent-primary">
-                    {stat.value}
+                  <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.accent} bg-clip-text text-transparent`}>
+                    {stat.number}
                   </span>
-                  <span className="text-sm text-color-text-tertiary font-medium">
+                  <span className="text-xs md:text-sm font-medium text-color-text-light uppercase tracking-wider">
                     {stat.label}
                   </span>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* CTAs */}
+            {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
               <motion.a
                 href="#get-involved"
-                className="btn-primary btn-lg"
+                className="btn btn-primary btn-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Start Supporting
-                <ArrowRight size={18} />
+                <ArrowRight size={20} />
               </motion.a>
               <motion.a
                 href="#about"
-                className="btn-secondary btn-lg"
+                className="btn btn-secondary btn-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -119,40 +140,55 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right: Image */}
+          {/* Right - Image with Interactive Elements */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 40 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-        
-            }}
-            className="relative h-96 md:h-full min-h-[500px] rounded-2xl overflow-hidden shadow-xl group"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative h-96 md:h-full min-h-[500px] lg:min-h-[600px]"
           >
-            <Image
-              src="/images/hero-bg.png"
-              alt="School building in Ethiopia"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-            
-            {/* Floating accent */}
+            {/* Main Image */}
+            <div className="relative h-full rounded-2xl overflow-hidden shadow-2xl group">
+              <Image
+                src="/images/hero-bg.png"
+                alt="School building in Ethiopia"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+              {/* Floating Cards */}
+              <motion.div
+                className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <p className="text-sm font-bold text-color-text-dark">
+                  Safe Learning Spaces
+                </p>
+                <p className="text-xs text-color-text-light mt-1">
+                  In rural Ethiopia
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-6 right-6 bg-gradient-emerald-gold rounded-full p-3 text-white shadow-lg"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity }}
+              >
+                <Zap size={24} />
+              </motion.div>
+            </div>
+
+            {/* Decorative Elements */}
             <motion.div
-              className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
-            >
-              <p className="text-sm font-medium text-color-text-primary">
-                Safe, modern learning spaces
-              </p>
-              <p className="text-xs text-color-text-tertiary mt-1">
-                in rural Ethiopia
-              </p>
-            </motion.div>
+              className="absolute -bottom-20 -right-20 w-64 h-64 bg-gradient-emerald-gold rounded-full opacity-5 blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
           </motion.div>
         </div>
       </div>
@@ -163,8 +199,18 @@ export function Hero() {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <span className="text-xs text-color-text-tertiary font-medium">Scroll to explore</span>
-        <ChevronDown size={20} className="text-color-accent-primary" />
+        <span className="text-xs font-medium text-color-text-light">Scroll to explore</span>
+        <motion.div
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-emerald-500 rounded-full flex items-center justify-center"
+        >
+          <motion.div
+            className="w-1 h-2 bg-emerald-500 rounded-full"
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
+        </motion.div>
       </motion.div>
     </section>
   );

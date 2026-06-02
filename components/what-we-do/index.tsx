@@ -1,114 +1,138 @@
 "use client";
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Hammer, Brush, BookOpen } from 'lucide-react';
+import { Building, Users, Heart, Lightbulb, BookOpen, Globe } from 'lucide-react';
 
-const pillars = [
+const services = [
   {
-    icon: Hammer,
-    title: 'School Construction',
-    desc: 'We build completely new schools in underserved communities—fully equipped learning spaces designed for modern education and built to last generations.',
-    image: '/images/second-hero-bg.png',
-  },
-  {
-    icon: Brush,
-    title: 'Renovation & Repair',
-    desc: 'Transforming existing structures into safe, inspiring spaces. We upgrade infrastructure, repair damage, and modernize facilities.',
-    image: '/images/third-hero-bg.png',
+    icon: Building,
+    title: 'School Infrastructure',
+    description: 'Constructing modern, safe, and sustainable educational facilities with electricity, water, and sanitation systems.',
+    color: 'from-blue-500 to-cyan-500',
   },
   {
     icon: BookOpen,
     title: 'Educational Resources',
-    desc: 'Beyond buildings—libraries, computers, books, and learning materials that empower students and teachers.',
-    image: '/images/hero-bg.png',
+    description: 'Providing textbooks, learning materials, technology, and equipment to enhance the teaching and learning experience.',
+    color: 'from-emerald-500 to-teal-500',
+  },
+  {
+    icon: Users,
+    title: 'Teacher Training',
+    description: 'Offering professional development programs to empower educators with modern pedagogical methods and skills.',
+    color: 'from-gold to-orange-500',
+  },
+  {
+    icon: Heart,
+    title: 'Wellness Programs',
+    description: 'Supporting student health, nutrition, and mental wellness through comprehensive school health initiatives.',
+    color: 'from-coral to-red-500',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Skills Development',
+    description: 'Teaching practical skills, technology, and entrepreneurship to prepare students for the modern economy.',
+    color: 'from-purple-500 to-pink-500',
+  },
+  {
+    icon: Globe,
+    title: 'Community Engagement',
+    description: 'Building partnerships with local communities to ensure sustainable, locally-driven educational transformation.',
+    color: 'from-indigo-500 to-blue-500',
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 export function WhatWeDo() {
   return (
-    <section id="what-we-do" className="section bg-color-white">
-      <div className="container">
-        {/* Section Header */}
+    <section id="what-we-do" className="section bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+      {/* Background accents */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-ocean opacity-5 blur-3xl pointer-events-none" />
+
+      <div className="container relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="mb-16 md:mb-24 max-w-2xl"
+          className="text-center mb-16 md:mb-24 max-w-3xl mx-auto"
         >
-          <motion.div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-0.5 bg-color-accent-primary rounded-full" />
-            <span className="badge bg-color-accent-surface text-color-accent-primary">What We Do</span>
+          <motion.div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-gold rounded-full" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-orange-50 border border-emerald-200">
+              <Lightbulb size={16} className="text-emerald-600" />
+              <span className="text-sm font-semibold text-color-text-dark">What We Do</span>
+            </span>
+            <div className="w-8 h-0.5 bg-gradient-to-r from-gold to-emerald-500 rounded-full" />
           </motion.div>
-          <h2 className="text-display text-color-text-primary mb-6">
-            Three Pillars of Impact
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-color-text-dark">
+            Comprehensive <span className="gradient-text">Education Solutions</span>
           </h2>
-          <p className="text-lg text-color-text-secondary leading-relaxed">
-            We approach education holistically—building new schools, upgrading existing facilities, and providing resources that transform learning.
+          <p className="text-lg text-color-text-light leading-relaxed max-w-2xl mx-auto">
+            We don&apos;t just build schools—we create complete educational ecosystems that transform communities and unlock human potential.
           </p>
         </motion.div>
 
-        {/* Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {pillars.map((pillar, idx) => {
-            const Icon = pillar.icon;
+        {/* Services Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {services.map((service, idx) => {
+            const Icon = service.icon;
             return (
               <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: idx * 0.12,
-
-                }}
-                viewport={{ once: true, margin: '-100px' }}
-                className="group relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-                whileHover={{ y: -8 }}
+                key={service.title}
+                variants={itemVariants}
+                className="group relative"
               >
-                {/* Background Image */}
-                <Image
-                  src={pillar.image}
-                  alt={pillar.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                {/* Card */}
+                <div className="relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-emerald-200 transition-all duration-300 h-full flex flex-col overflow-hidden">
+                  {/* Animated background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6 md:p-8">
                   {/* Icon */}
-                  <motion.div
-                    className="w-12 h-12 rounded-lg bg-color-accent-surface/20 flex items-center justify-center text-white mb-4 transition-all duration-300 group-hover:bg-color-accent-primary group-hover:scale-110"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <Icon size={24} />
-                  </motion.div>
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.color} p-3 mb-6 group-hover:scale-110 transition-transform relative z-10`}>
+                    <Icon size={28} className="text-white w-full h-full" />
+                  </div>
 
                   {/* Content */}
-                  <h3 className="text-xl md:text-2xl font-serif font-normal text-white mb-2 leading-snug">
-                    {pillar.title}
+                  <h3 className="text-xl font-bold text-color-text-dark mb-3 relative z-10">
+                    {service.title}
                   </h3>
-                  <p className="text-sm md:text-base text-white/90 leading-relaxed line-clamp-2">
-                    {pillar.desc}
+                  <p className="text-color-text-light text-sm leading-relaxed relative z-10 flex-grow">
+                    {service.description}
                   </p>
 
-                  {/* Arrow indicator */}
-                  <motion.div
-                    className="mt-4 flex items-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                    initial={{ x: -10 }}
-                    whileHover={{ x: 0 }}
-                  >
-                    <span className="text-sm font-medium">Learn more</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.div>
+                  {/* Gradient Border */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left`} />
+
+                  {/* Arrow */}
+                  <div className="mt-6 flex items-center gap-2 text-emerald-600 font-semibold text-sm relative z-10 group-hover:gap-3 transition-all">
+                    <span>Learn more</span>
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
                 </div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

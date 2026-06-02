@@ -1,32 +1,35 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Heart, Users, Share2, ArrowRight } from 'lucide-react';
+import { Heart, Users, Share2, ArrowRight, Zap } from 'lucide-react';
 
 const actions = [
   {
     icon: Heart,
-    title: 'Donate',
-    desc: 'Every contribution goes directly to building and renovating schools. Your gift builds futures—one brick at a time.',
-    cta: 'Start Donating',
+    title: 'Support Our Mission',
+    desc: 'Every donation directly funds construction, resources, and programs. Your gift transforms lives—one child at a time.',
+    cta: 'Donate Now',
     href: '#',
     featured: true,
+    color: 'from-coral to-red-500',
   },
   {
     icon: Users,
-    title: 'Volunteer',
-    desc: 'Join our team on the ground or remotely. We welcome skills, time, and passion in equal measure.',
+    title: 'Volunteer Your Skills',
+    desc: 'Join our movement—on the ground in Ethiopia or remotely. We need builders, teachers, designers, and passionate changemakers.',
     cta: 'Get Involved',
     href: '#',
     featured: false,
+    color: 'from-blue-500 to-cyan-500',
   },
   {
     icon: Share2,
-    title: 'Spread the Word',
-    desc: 'Share our mission with your network. Awareness builds the foundation for change and community support.',
-    cta: 'Share Our Mission',
+    title: 'Amplify Our Reach',
+    desc: 'Share our mission with your network. Awareness and word-of-mouth build the strongest foundation for collective change.',
+    cta: 'Share Our Story',
     href: '#',
     featured: false,
+    color: 'from-purple-500 to-pink-500',
   },
 ];
 
@@ -39,7 +42,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
@@ -49,31 +52,34 @@ const itemVariants = {
 
 export function GetInvolved() {
   return (
-    <section id="get-involved" className="section bg-gradient-to-b from-color-neutral-900 to-color-neutral-900 text-color-text-inverse relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-color-accent-primary/10 rounded-full blur-3xl -mr-48 -mt-48" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-color-accent-primary/10 rounded-full blur-3xl -ml-48 -mb-48" />
+    <section id="get-involved" className="section bg-gradient-nocturne relative overflow-hidden text-white">
+      {/* Background accents */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-emerald-gold opacity-5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-ocean opacity-5 blur-3xl pointer-events-none" />
 
       <div className="container relative z-10">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="mb-16 md:mb-24 max-w-2xl"
+          className="text-center mb-16 md:mb-24 max-w-3xl mx-auto"
         >
-          <motion.div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-0.5 bg-color-accent-light rounded-full" />
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-color-accent-surface/20 text-color-accent-light border border-color-accent-light/20">
-              Take Action
+          <motion.div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-8 h-0.5 bg-gradient-to-r from-emerald-400 to-gold rounded-full" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-gold/20 border border-emerald-400/30">
+              <Zap size={16} className="text-emerald-300" />
+              <span className="text-sm font-semibold text-emerald-300">Join the Movement</span>
             </span>
+            <div className="w-8 h-0.5 bg-gradient-to-r from-gold to-emerald-400 rounded-full" />
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-normal leading-tight text-color-text-inverse mb-6">
-            Join the Movement
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6">
+            Make a Difference <br />
+            <span className="bg-gradient-emerald-gold bg-clip-text text-transparent">Start Today</span>
           </h2>
-          <p className="text-lg text-color-neutral-400 leading-relaxed">
-            Together, we can transform education across the Gurage Zone. Whether through donations, volunteering, or advocacy, there&apos;s a way for you to make a difference.
+          <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
+            Whether through financial support, volunteer action, or advocacy, there are multiple ways to be part of this transformative journey.
           </p>
         </motion.div>
 
@@ -83,68 +89,64 @@ export function GetInvolved() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
         >
           {actions.map((action, idx) => {
             const Icon = action.icon;
             return (
-              <motion.a
+              <motion.div
                 key={action.title}
-                href={action.href}
                 variants={itemVariants}
-                className={`group relative rounded-xl p-8 flex flex-col gap-6 transition-all duration-300 cursor-pointer overflow-hidden ${
-                  action.featured
-                    ? 'bg-color-accent-primary text-color-text-primary border border-color-accent-light/50 hover:shadow-xl hover:shadow-color-accent-primary/30'
-                    : 'bg-color-white/10 backdrop-blur-sm border border-color-white/20 text-color-text-inverse hover:bg-color-white/15 hover:border-color-accent-light/50'
-                }`}
-                whileHover={{ y: -8, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="group relative"
               >
-                {/* Background gradient on hover */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-color-accent-light to-color-accent-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-                  initial={false}
-                />
+                <div className={`relative overflow-hidden rounded-2xl transition-all duration-300 h-full flex flex-col ${
+                  action.featured
+                    ? 'bg-gradient-to-br from-emerald-600 to-emerald-800 border-2 border-emerald-400 shadow-2xl scale-100 md:scale-105'
+                    : 'bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:bg-white/10'
+                }`}>
+                  {/* Animated background for non-featured */}
+                  {!action.featured && (
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  )}
 
-                {/* Icon */}
-                <motion.div
-                  className={`w-14 h-14 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                    action.featured
-                      ? 'bg-color-text-primary/10 text-color-accent-primary'
-                      : 'bg-color-white/20 text-color-accent-light group-hover:bg-color-accent-primary/30'
-                  }`}
-                  whileHover={{ rotate: 8, scale: 1.1 }}
-                >
-                  <Icon size={28} />
-                </motion.div>
+                  <div className="p-8 flex flex-col h-full relative z-10">
+                    {/* Icon */}
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${action.color} p-3 mb-6 group-hover:scale-110 transition-transform flex-shrink-0`}>
+                      <Icon size={26} className="text-white w-full h-full" />
+                    </div>
 
-                {/* Content */}
-                <div className="relative z-10">
-                  <h3 className={`text-2xl font-serif font-normal mb-3 ${
-                    action.featured ? 'text-color-text-primary' : 'text-color-text-inverse'
-                  }`}>
-                    {action.title}
-                  </h3>
-                  <p className={`text-sm leading-relaxed ${
-                    action.featured ? 'text-color-text-secondary' : 'text-color-neutral-400'
-                  }`}>
-                    {action.desc}
-                  </p>
+                    {/* Content */}
+                    <h3 className="text-2xl font-bold mb-3 flex-shrink-0">
+                      {action.title}
+                    </h3>
+                    <p className={`text-sm leading-relaxed flex-grow mb-6 ${
+                      action.featured ? 'text-emerald-100' : 'text-gray-300'
+                    }`}>
+                      {action.desc}
+                    </p>
+
+                    {/* CTA Button */}
+                    <motion.a
+                      href={action.href}
+                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-bold transition-all w-fit ${
+                        action.featured
+                          ? 'bg-white text-emerald-700 hover:bg-emerald-50'
+                          : 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white hover:shadow-lg'
+                      }`}
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {action.cta}
+                      <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                    </motion.a>
+                  </div>
+
+                  {/* Gradient border for featured */}
+                  {action.featured && (
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none" />
+                  )}
                 </div>
-
-                {/* CTA */}
-                <motion.div
-                  className="flex items-center gap-2 pt-4 relative z-10"
-                  whileHover={{ x: 4 }}
-                >
-                  <span className={`font-semibold text-sm ${
-                    action.featured ? 'text-color-text-primary' : 'text-color-text-inverse'
-                  }`}>
-                    {action.cta}
-                  </span>
-                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </motion.div>
-              </motion.a>
+              </motion.div>
             );
           })}
         </motion.div>
@@ -153,21 +155,24 @@ export function GetInvolved() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="mt-16 md:mt-24 text-center"
+          className="text-center bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-12"
         >
-          <p className="text-color-neutral-400 mb-6">
-            Have questions? We&apos;d love to hear from you.
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            Questions? We&apos;d Love to Connect
+          </h3>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Reach out to learn more about our programs, partnership opportunities, or how you can contribute to this mission.
           </p>
           <motion.a
-            href="mailto:info@yemisgana.org"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-color-white/20 text-color-text-inverse hover:border-color-accent-light hover:text-color-accent-light transition-colors"
+            href="mailto:contact@yemisgana.org"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-emerald-gold text-white font-bold hover:shadow-lg transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Contact Us
-            <ArrowRight size={16} />
+            <ArrowRight size={20} />
           </motion.a>
         </motion.div>
       </div>
