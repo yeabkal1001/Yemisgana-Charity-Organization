@@ -21,9 +21,8 @@ export function Nav() {
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 20);
+      setScrolled(y > 30);
 
-      // Scroll spy logic
       const scrollPosition = y + window.innerHeight / 3;
       const sections = navLinks.map(link => {
         const el = document.querySelector(link.href);
@@ -53,15 +52,25 @@ export function Nav() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-[9000] transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm'
-          : 'bg-white border-b border-gray-100'
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          scrolled
+            ? 'bg-white shadow-base border-b border-color-border-light'
+            : 'bg-white'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group flex-shrink-0">
-            <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-teal/10">
+          <motion.a
+            href="#"
+            className="flex items-center gap-3 group flex-shrink-0"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="w-10 h-10 rounded-lg overflow-hidden bg-accent-surface flex items-center justify-center">
               <Image
                 src="/images/logo.png"
                 alt="Yemisgana"
@@ -72,119 +81,143 @@ export function Nav() {
               />
             </div>
             <div className="hidden sm:block">
-              <p className="text-xs font-bold text-gray-600 leading-tight">Yemisgana</p>
-              <p className="text-[10px] text-gray-400">Education</p>
+              <p className="text-sm font-semibold text-color-text-primary leading-tight">Yemisgana</p>
+              <p className="text-xs text-color-text-tertiary">Education Initiative</p>
             </div>
-          </a>
+          </motion.a>
 
-          {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link, idx) => {
               const isActive = activeSection === link.href;
               return (
-                <a
+                <motion.a
                   key={link.label}
                   href={link.href}
-                  className={`px-3 py-2 text-sm font-500 transition-colors duration-200 ${
-                    isActive 
-                      ? 'text-teal font-600' 
-                      : 'text-gray-600 hover:text-gray-900'
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05, duration: 0.3 }}
+                  className={`text-sm font-medium transition-colors duration-300 relative group ${
+                    isActive
+                      ? 'text-color-accent-primary'
+                      : 'text-color-text-secondary hover:text-color-text-primary'
                   }`}
                 >
                   {link.label}
-                </a>
+                  <motion.div
+                    className="absolute bottom-[-6px] left-0 h-0.5 bg-color-accent-primary"
+                    initial={{ width: 0 }}
+                    animate={{ width: isActive ? '100%' : '0%' }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.div
+                    className="absolute bottom-[-6px] left-0 h-0.5 bg-color-accent-primary opacity-0 group-hover:opacity-100"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: '100%' }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.a>
               );
             })}
           </div>
 
-          {/* Right actions */}
+          {/* Right Actions */}
           <div className="flex items-center gap-3">
-            <a
+            <motion.a
               href="#get-involved"
-              className="hidden sm:flex btn-primary text-sm px-4 py-2 h-10 items-center gap-2"
+              className="hidden sm:block btn-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Donate
-              <ArrowRight size={14} />
-            </a>
+              Donate Now
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </motion.a>
 
-            <button
+            <motion.button
               onClick={() => setMenuOpen(true)}
-              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-color-neutral-100 text-color-text-primary transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               aria-label="Open menu"
             >
-              <Menu size={20} />
-            </button>
+              <Menu size={24} />
+            </motion.button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9500] bg-white"
+            initial={{ opacity: 0, x: 400 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 400 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 120 }}
+            className="fixed inset-y-0 right-0 w-full max-w-sm z-50 bg-white shadow-xl"
           >
-            {/* Menu header */}
-            <div className="px-4 py-4 border-b border-gray-200 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-lg overflow-hidden bg-teal/10">
+            {/* Menu Header */}
+            <div className="p-6 border-b border-color-border-light flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-accent-surface flex items-center justify-center">
                   <Image
                     src="/images/logo.png"
                     alt="Yemisgana"
                     width={40}
                     height={40}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded"
                   />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-gray-600">Yemisgana</p>
-                  <p className="text-[10px] text-gray-400">Education</p>
+                  <p className="text-sm font-semibold text-color-text-primary">Yemisgana</p>
+                  <p className="text-xs text-color-text-tertiary">Education</p>
                 </div>
               </div>
-              <button
+              <motion.button
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700"
+                className="p-2 rounded-lg hover:bg-color-neutral-100"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <X size={20} />
-              </button>
+                <X size={24} className="text-color-text-primary" />
+              </motion.button>
             </div>
 
-            {/* Menu links */}
-            <div className="flex flex-col py-6">
-              {[...navLinks, { label: 'Get Involved', href: '#get-involved' }].map((link, i) => (
+            {/* Menu Links */}
+            <nav className="px-6 py-8 space-y-2">
+              {[...navLinks, { label: 'Get Involved', href: '#get-involved' }].map((link, idx) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="px-4 py-3 text-base font-500 text-gray-700 border-b border-gray-100 hover:bg-gray-50"
+                  transition={{ delay: idx * 0.08, type: 'spring', damping: 20 }}
+                  className="block px-4 py-3 rounded-lg text-base font-medium text-color-text-secondary hover:bg-color-neutral-100 hover:text-color-accent-primary transition-colors"
                 >
                   {link.label}
                 </motion.a>
               ))}
-            </div>
+            </nav>
 
             {/* Mobile CTA */}
-            <div className="p-4 border-t border-gray-200">
-              <a
+            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-color-border-light bg-white">
+              <motion.a
                 href="#get-involved"
                 onClick={() => setMenuOpen(false)}
-                className="btn-primary w-full justify-center flex gap-2"
+                className="btn-primary w-full flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 Donate Now
                 <ArrowRight size={16} />
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Add nav spacing */}
+      {/* Navigation Spacing */}
       <div className="h-16" />
     </>
   );

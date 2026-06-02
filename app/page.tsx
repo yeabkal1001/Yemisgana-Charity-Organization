@@ -5,10 +5,11 @@ import { Approach } from '@/components/approach';
 import { Goals } from '@/components/goals';
 import { Impact } from '@/components/impact';
 import { GetInvolved } from '@/components/get-involved';
+import { Footer } from '@/components/footer';
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-deep-forest overflow-x-hidden selection:bg-lime selection:text-deep-forest">
+    <main className="min-h-screen bg-white overflow-x-hidden">
       <Hero />
       <About />
       <WhatWeDo />
@@ -16,6 +17,7 @@ export default function Page() {
       <Goals />
       <Impact />
       <GetInvolved />
+      <Footer />
     </main>
   );
 }

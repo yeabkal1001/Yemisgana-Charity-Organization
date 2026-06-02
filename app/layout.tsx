@@ -41,8 +41,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${barlow.variable} ${dmSerifDisplay.variable}`} data-theme="dark" suppressHydrationWarning>
-      <body className="antialiased" suppressHydrationWarning>
+    <html lang="en" className={`${barlow.variable} ${dmSerifDisplay.variable} bg-white`} data-theme="dark" suppressHydrationWarning>
+      <body className="antialiased bg-white" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
             __html: `
