@@ -1,192 +1,85 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HeroContent } from './hero-content';
-import { StatsSection } from './stats-section';
-import { EducationBadge } from './education-badge';
-
-const slides = [
-  {
-    id: 0,
-    image: '/images/hero-bg.png',
-    headline: <>Today, we build<br />schools.</>,
-    subHeadline: <>Tomorrow, we build<br />futures.</>,
-    location: 'Gurage Zone, Ethiopia',
-  },
-  {
-    id: 1,
-    image: '/images/second-hero-bg.png',
-    headline: <>Better schools,</>,
-    subHeadline: <>brighter<br />tomorrows.</>,
-    location: 'Silti Woreda, SNNPR',
-  },
-  {
-    id: 2,
-    image: '/images/third-hero-bg.png',
-    headline: <>Every school<br />we build,</>,
-    subHeadline: <>a community<br />we uplift.</>,
-    location: 'Cheha District, Ethiopia',
-  },
-];
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 export function Hero() {
-  const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPrev(current);
-      setCurrent((c) => (c + 1) % slides.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [current]);
-
-  const goTo = (i: number) => {
-    if (i === current) return;
-    setPrev(current);
-    setCurrent(i);
-  };
-
   return (
-    <section id="hero" className="relative w-full h-screen bg-[var(--color-bg-primary)] overflow-hidden">
-
-      {/* ── Background Images with Ken Burns ───────────── */}
-      {slides.map((slide, i) => (
-        <div
-          key={slide.id}
-          className="absolute inset-0"
-          style={{ zIndex: i === current ? 1 : 0, pointerEvents: 'none' }}
-        >
+    <section id="hero" className="relative w-full bg-white overflow-hidden pt-24 pb-16 md:py-32">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          
+          {/* Left: Content */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: i === current ? 1 : 0 }}
-            transition={{ duration: 1.4, ease: 'easeInOut' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col gap-6"
           >
-            <motion.div
-              className="absolute inset-0"
-              initial={{ scale: 1.05 }}
-              animate={{ scale: i === current ? 1 : 1.05 }}
-              transition={{ duration: 7, ease: 'linear' }}
-            >
-              <Image
-                src={slide.image}
-                alt={`Slide ${i + 1}`}
-                fill
-                className="object-cover"
-                style={{ objectPosition: 'center 25%' }}
-                priority={i === 0}
-              />
-            </motion.div>
+            {/* Accent line */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-0.5 bg-teal rounded-full" />
+              <span className="text-teal font-600 text-sm uppercase tracking-wide">Our Mission</span>
+            </div>
+
+            {/* Main headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-navy">
+              Building Schools,<br />
+              <span className="text-teal">Changing Lives</span>
+            </h1>
+
+            {/* Description */}
+            <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+              Yemisgana Charity Organization builds safe, modern schools across Ethiopia's Gurage Zone, creating inspiring learning environments where every child can thrive and reach their potential.
+            </p>
+
+            {/* Stats grid */}
+            <div className="grid grid-cols-3 gap-6 mt-4">
+              <div className="flex flex-col">
+                <span className="text-3xl font-black text-teal">25+</span>
+                <span className="text-sm text-gray-600 mt-1">Schools Built</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-3xl font-black text-teal">5K+</span>
+                <span className="text-sm text-gray-600 mt-1">Students Reached</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-3xl font-black text-teal">100%</span>
+                <span className="text-sm text-gray-600 mt-1">Impact Focused</span>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-4">
+              <a href="#get-involved" className="btn-primary flex items-center justify-center gap-2">
+                Start Donating
+                <ArrowRight size={16} />
+              </a>
+              <a href="#about" className="btn-secondary flex items-center justify-center gap-2">
+                Learn More
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right: Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative h-96 md:h-full min-h-96 rounded-2xl overflow-hidden shadow-lg"
+          >
+            <Image
+              src="/images/hero-bg.png"
+              alt="School building in Ethiopia"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </motion.div>
         </div>
-      ))}
-
-      {/* ── Cinematic overlays ─────────────────────────── */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to right, rgba(var(--color-hero-overlay-rgb), 0.88) 0%, rgba(var(--color-hero-overlay-rgb), 0.65) 40%, rgba(var(--color-hero-overlay-rgb), 0.18) 70%, transparent 100%)',
-          zIndex: 2,
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to top, rgba(var(--color-hero-overlay-rgb), 0.75) 0%, transparent 50%)',
-          zIndex: 2,
-        }}
-      />
-
-      {/* ── Content ────────────────────────────────────── */}
-      <div className="relative h-full flex flex-col" style={{ zIndex: 3 }}>
-
-        {/* Desktop layout */}
-        <div className="hidden md:block relative flex-1">
-          <AnimatePresence mode="wait">
-            <HeroContent
-              key={current}
-              headline={slides[current].headline}
-              subHeadline={slides[current].subHeadline}
-              slideNum={current + 1}
-              totalSlides={slides.length}
-              location={slides[current].location}
-            />
-          </AnimatePresence>
-          <StatsSection />
-          <EducationBadge />
-        </div>
-
-        {/* Mobile layout */}
-        <div className="md:hidden flex flex-col h-full">
-          <div className="flex-1 flex flex-col justify-center px-6 pt-24 pb-4">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-3"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className="w-5 h-px bg-lime" />
-                <p className="text-lime font-black text-[9px] tracking-[0.28em] uppercase">
-                  {slides[current].location}
-                </p>
-              </div>
-              <h1 className="text-white font-black leading-[0.92] tracking-tighter text-4xl">
-                {slides[current].headline}
-              </h1>
-              <h2 className="text-lime font-serif italic text-2xl leading-[1.05]">
-                {slides[current].subHeadline}
-              </h2>
-              <div className="h-px w-40 bg-gradient-to-r from-lime to-transparent mt-1" />
-              <p className="text-white/65 text-sm leading-[1.75] max-w-[300px] mt-1">
-                Yemisgana Charity Organization builds safe, modern schools for children in the Gurage Zone of Ethiopia.
-              </p>
-              <div className="flex items-center gap-4 mt-2">
-                <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light transition-all shadow-lg shadow-lime/25">
-                  Our Mission →
-                </button>
-                <button className="flex items-center gap-2 text-white/70 text-[12px] font-semibold hover:text-white transition-colors">
-                  <div className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center">
-                    <svg width="10" height="12" viewBox="0 0 10 12" fill="white">
-                      <path d="M1 1l8 5-8 5V1z" />
-                    </svg>
-                  </div>
-                  Watch Story
-                </button>
-              </div>
-            </motion.div>
-          </div>
-          <StatsSection />
-        </div>
       </div>
-
-      {/* ── Slide indicators ───────────────────────────── */}
-      <div className="absolute bottom-24 md:bottom-20 left-6 md:left-10 lg:left-14 flex items-center gap-2" style={{ zIndex: 4 }}>
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`rounded-full transition-all duration-500 ${
-              i === current
-                ? 'w-8 h-1.5 bg-lime'
-                : 'w-1.5 h-1.5 bg-[var(--color-text-muted-35)] hover:bg-[var(--color-text-muted-60)]'
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* ── Animated scroll indicator ──────────────────── */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5" style={{ zIndex: 4 }}>
-        <p className="text-[var(--color-text-muted-35)] font-sans text-[8px] tracking-[0.3em] uppercase">Scroll</p>
-        <div className="w-px h-8 bg-gradient-to-b from-[var(--color-text-muted-40)] to-transparent animate-scroll-pulse" />
-      </div>
-
     </section>
   );
 }

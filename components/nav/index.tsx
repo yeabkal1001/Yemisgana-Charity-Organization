@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Menu, ArrowRight, Sun, Moon } from 'lucide-react';
+import { X, Menu, ArrowRight } from 'lucide-react';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -16,32 +16,12 @@ const navLinks = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("");
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-
-  useEffect(() => {
-    // Initialize theme from localStorage
-    const stored = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = stored || (prefersDark ? 'dark' : 'light');
-    setTheme(initialTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 50);
-      
-      const totalH = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(totalH > 0 ? (y / totalH) * 100 : 0);
+      setScrolled(y > 20);
 
       // Scroll spy logic
       const scrollPosition = y + window.innerHeight / 3;
@@ -67,190 +47,145 @@ export function Nav() {
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // initial call
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <>
-      {/* Cinematic Top Progress Bar */}
-      <div
-        className="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-lime via-lime-light to-lime z-[10000] pointer-events-none transition-all duration-100"
-        style={{ width: `${scrollProgress}%` }}
-      />
-
-        <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[9000] transition-all duration-500 ${
-          scrolled
-            ? 'bg-[rgba(var(--color-bg-primary),0.85)] backdrop-blur-xl border-b border-[var(--color-border)] shadow-2xl shadow-black/40 py-3 md:py-4'
-            : 'bg-transparent py-5 md:py-7'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 lg:px-12">
-
+      <nav className={`fixed top-0 left-0 right-0 z-[9000] transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm'
+          : 'bg-white border-b border-gray-100'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 md:w-11 md:h-11 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-lime/30 group-hover:ring-lime/80 group-hover:scale-105 transition-all duration-500">
+          <a href="#" className="flex items-center gap-2 group flex-shrink-0">
+            <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-teal/10">
               <Image
                 src="/images/logo.png"
-                alt="Yemsigana"
-                width={80} height={80}
-                className="w-full h-auto object-cover"
-                style={{ objectPosition: 'center 18%', transform: 'scale(1.15)', transformOrigin: 'center 30%' }}
+                alt="Yemisgana"
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
                 priority
               />
             </div>
-            <div className="hidden sm:block leading-tight">
-              <p className="text-[var(--color-text-primary)] text-[11px] font-bold tracking-wide group-hover:text-lime-light transition-colors duration-300">
-                የምስጋና በጎ አድራጎት ድርጅት
-              </p>
-              <p className="text-[var(--color-text-muted-45)] text-[8px] tracking-[0.2em] uppercase mt-0.5 group-hover:text-[var(--color-text-muted-60)] transition-colors duration-300">
-                Yemsigana Charity
-              </p>
+            <div className="hidden sm:block">
+              <p className="text-xs font-bold text-gray-600 leading-tight">Yemisgana</p>
+              <p className="text-[10px] text-gray-400">Education</p>
             </div>
           </a>
 
           {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-8 xl:gap-10">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href;
               return (
                 <a
                   key={link.label}
                   href={link.href}
-                  className={`relative text-[13px] font-semibold tracking-wider uppercase transition-colors duration-300 py-1.5 px-0.5 group ${
-                    isActive ? 'text-lime font-bold' : 'text-[var(--color-text-muted-60)] hover:text-[var(--color-text-primary)]'
+                  className={`px-3 py-2 text-sm font-500 transition-colors duration-200 ${
+                    isActive 
+                      ? 'text-teal font-600' 
+                      : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   {link.label}
-                  
-                  {/* Sliding active bar */}
-                  {isActive ? (
-                    <motion.span
-                      layoutId="activeUnderline"
-                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-lime shadow-[0_0_8px_var(--color-lime)]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  ) : (
-                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-text-muted-40)] group-hover:w-full transition-all duration-300" />
-                  )}
                 </a>
               );
             })}
           </div>
 
-          {/* Right Action */}
+          {/* Right actions */}
           <div className="flex items-center gap-3">
-            <motion.a
+            <a
               href="#get-involved"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-lime text-[var(--color-bg-primary)] font-black text-[12px] uppercase tracking-wider rounded-full hover:bg-lime-light transition-all duration-300 shadow-[0_4px_20px_rgba(var(--color-lime-rgb),0.25)] hover:shadow-[0_4px_25px_rgba(var(--color-lime-rgb),0.4)]"
+              className="hidden sm:flex btn-primary text-sm px-4 py-2 h-10 items-center gap-2"
             >
-              Donate Now <ArrowRight size={12} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform duration-300" />
-            </motion.a>
-
-            <button
-              onClick={toggleTheme}
-              className="theme-toggle text-[var(--color-text-primary)]"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
+              Donate
+              <ArrowRight size={14} />
+            </a>
 
             <button
               onClick={() => setMenuOpen(true)}
-              className="w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-sm flex items-center justify-center text-[var(--color-text-primary)] hover:border-lime/40 hover:bg-lime/10 hover:text-lime hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
               aria-label="Open menu"
             >
-              <Menu size={16} />
+              <Menu size={20} />
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
-      {/* Mobile / Full-screen overlay menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[9500] bg-[rgba(var(--color-bg-primary),0.98)] backdrop-blur-3xl flex flex-col px-8 py-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9500] bg-white"
           >
-            {/* Header in menu */}
-            <div className="flex items-center justify-between mb-16 max-w-7xl mx-auto w-full">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden ring-1 ring-lime/30">
+            {/* Menu header */}
+            <div className="px-4 py-4 border-b border-gray-200 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-9 h-9 rounded-lg overflow-hidden bg-teal/10">
                   <Image
                     src="/images/logo.png"
-                    alt="Yemsigana"
-                    width={60} height={60}
-                    className="w-full h-auto object-cover"
-                    style={{ objectPosition: 'center 18%', transform: 'scale(1.15)', transformOrigin: 'center 30%' }}
+                    alt="Yemisgana"
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="leading-tight">
-                  <p className="text-[var(--color-text-primary)] text-[11px] font-bold">የምስጋና በጎ አድራጎት ድርጅት</p>
-                  <p className="text-[var(--color-text-muted-45)] text-[8px] tracking-[0.18em] uppercase mt-0.5">Yemsigana Charity</p>
+                <div>
+                  <p className="text-xs font-bold text-gray-600">Yemisgana</p>
+                  <p className="text-[10px] text-gray-400">Education</p>
                 </div>
               </div>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="w-10 h-10 rounded-full border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-primary)] hover:border-lime hover:text-lime hover:bg-lime/10 hover:scale-105 transition-all duration-300 cursor-pointer"
-                aria-label="Close menu"
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700"
               >
-                <X size={16} />
+                <X size={20} />
               </button>
             </div>
 
             {/* Menu links */}
-            <nav className="flex flex-col gap-6 flex-1 justify-center max-w-2xl mx-auto w-full pl-4">
-              {[...navLinks, { label: 'Get Involved', href: '#get-involved' }].map((link, i) => {
-                const isActive = activeSection === link.href;
-                return (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className={`font-black tracking-tight leading-none uppercase transition-all duration-300 flex items-center gap-4 group ${
-                      isActive ? 'text-lime font-black' : 'text-[var(--color-text-muted-70)] hover:text-lime-light'
-                    }`}
-                    style={{ fontSize: 'clamp(2rem, 7vw, 3.2rem)' }}
-                  >
-                    <span className="text-[14px] font-serif font-normal italic text-[var(--color-text-muted-30)] group-hover:text-lime/50 transition-colors duration-300">
-                      0{i + 1}
-                    </span>
-                    {link.label}
-                  </motion.a>
-                );
-              })}
-            </nav>
+            <div className="flex flex-col py-6">
+              {[...navLinks, { label: 'Get Involved', href: '#get-involved' }].map((link, i) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="px-4 py-3 text-base font-500 text-gray-700 border-b border-gray-100 hover:bg-gray-50"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </div>
 
-            {/* Footer in menu */}
-            <div className="pt-8 border-t border-[var(--color-border)] flex items-center justify-between max-w-7xl mx-auto w-full">
-              <p className="text-[var(--color-text-muted-20)] text-[10px] tracking-widest uppercase font-semibold">
-                © 2026 Yemsigana Charity
-              </p>
+            {/* Mobile CTA */}
+            <div className="p-4 border-t border-gray-200">
               <a
                 href="#get-involved"
                 onClick={() => setMenuOpen(false)}
-                className="px-6 py-3 bg-lime text-[var(--color-bg-primary)] font-bold text-[12px] uppercase tracking-wider rounded-full hover:bg-lime-light transition-all duration-300 shadow-[0_4px_15px_rgba(var(--color-lime-rgb),0.2)]"
+                className="btn-primary w-full justify-center flex gap-2"
               >
-                Donate Now →
+                Donate Now
+                <ArrowRight size={16} />
               </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Add nav spacing */}
+      <div className="h-16" />
     </>
   );
 }
