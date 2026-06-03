@@ -8,7 +8,7 @@ import { GetInvolved } from '@/components/get-involved';
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-deep-forest overflow-x-hidden selection:bg-lime selection:text-deep-forest">
+    <main className="min-h-screen bg-[var(--color-bg-primary)] overflow-x-hidden" style={{ WebkitTapHighlightColor: 'transparent' }}>
       <Hero />
       <About />
       <WhatWeDo />

@@ -58,11 +58,11 @@ const goals = [
 
 export function Goals() {
   return (
-    <section id="goals" className="w-full bg-mid-forest relative select-none overflow-hidden border-b border-white/5 py-24 md:py-32 grid-bg">
+    <section id="goals" className="w-full bg-[var(--color-bg-secondary)] relative select-none overflow-hidden border-b border-[var(--color-border)] py-24 md:py-32 grid-bg">
 
       {/* Decorative vertical lines */}
-      <div className="absolute top-0 bottom-0 left-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-      <div className="absolute top-0 bottom-0 right-12 w-px bg-white/5 pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 left-12 w-px bg-[var(--color-border)] pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 right-12 w-px bg-[var(--color-border)] pointer-events-none hidden md:block" />
 
       {/* ── Section Masthead ─────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 mb-16">
@@ -83,7 +83,7 @@ export function Goals() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="font-sans font-black text-white leading-[0.95] tracking-tighter"
+            className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
           >
             Our Core <span className="font-serif italic font-normal text-lime">Goals</span>.
@@ -94,7 +94,7 @@ export function Goals() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-white/40 font-sans text-xs md:text-sm max-w-xs leading-relaxed"
+            className="text-[var(--color-text-muted)] font-sans text-xs md:text-sm max-w-xs leading-relaxed"
           >
             Five defining objectives guiding every project, every brick, and every classroom.
           </motion.p>
@@ -114,9 +114,9 @@ export function Goals() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
-                className={`group relative rounded-3xl p-8 border border-white/5 bg-deep-forest/50 backdrop-blur-sm flex flex-col justify-between overflow-hidden transition-all duration-500 hover:scale-[1.015] hover:border-white/15 ${goal.gridClass}`}
+                className={`group relative rounded-3xl p-8 border border-[var(--color-border)] bg-[var(--color-bg-primary)]/50 backdrop-blur-sm flex flex-col justify-between overflow-hidden transition-all duration-500 hover:scale-[1.015] ${goal.gridClass}`}
                 style={{
-                  boxShadow: `inset 0 0 20px rgba(255, 255, 255, 0.01)`
+                  boxShadow: `inset 0 0 20px rgba(var(--color-text-primary-rgb,10,30,18), 0.01)`
                 }}
               >
                 {/* Glow ring overlay on hover */}
@@ -131,18 +131,18 @@ export function Goals() {
                 <div className="flex items-start justify-between relative z-10">
                   <div className="relative">
                     {/* Glowing background blur for icon */}
-                    <div className="absolute inset-0 bg-lime/10 blur-xl rounded-full" />
+                    <div className="absolute inset-0" style={{ background: 'rgba(var(--color-lime-rgb),0.1)', filter: 'blur(20px)', borderRadius: '9999px' }} />
                     
-                    <div className="relative w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-lime shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                    <div className="relative w-12 h-12 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-lime shadow-2xl transition-transform duration-500 group-hover:scale-105">
                       <Icon size={20} strokeWidth={1.5} />
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-full border border-white/10 bg-white/3 font-sans text-[8px] font-black tracking-[0.2em] uppercase text-white/50 group-hover:text-lime group-hover:border-lime/20 transition-all duration-300">
+                    <span className="px-2.5 py-1 rounded-full border font-sans text-[8px] font-black tracking-[0.2em] uppercase text-[var(--color-text-muted)] group-hover:text-lime transition-all duration-300" style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)' }}>
                       {goal.tag}
                     </span>
-                    <span className="font-serif font-black text-white/10 text-xl select-none group-hover:text-lime/25 transition-colors duration-300">
+                    <span className="font-serif font-black text-xl select-none group-hover:text-lime/25 transition-colors duration-300" style={{ color: 'rgba(255,255,255,0.1)' }}>
                       {goal.num}
                     </span>
                   </div>
@@ -151,13 +151,13 @@ export function Goals() {
                 {/* Bottom Section: Heading & Desc */}
                 <div className="mt-12 md:mt-16 relative z-10">
                   <h3 
-                    className="font-sans font-black text-white leading-tight tracking-tight mb-3 transition-colors duration-300 group-hover:text-lime-light"
+                    className="font-sans font-black text-[var(--color-text-primary)] leading-tight tracking-tight mb-3 transition-colors duration-300 group-hover:text-lime-light"
                     style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)' }}
                   >
                     {goal.full}
                   </h3>
                   
-                  <p className="text-white/50 font-sans text-xs md:text-sm leading-relaxed transition-colors duration-300 group-hover:text-white/70">
+                  <p className="text-[var(--color-text-muted)] font-sans text-xs md:text-sm leading-relaxed transition-colors duration-300 group-hover:text-[var(--color-text-primary)]">
                     {goal.desc}
                   </p>
                 </div>

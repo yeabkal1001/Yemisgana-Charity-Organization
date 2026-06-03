@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Menu, ArrowRight } from 'lucide-react';
+import { X, Menu, ArrowRight, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -18,6 +18,7 @@ export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("");
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
     const onScroll = () => {
@@ -55,6 +56,23 @@ export function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('theme');
+      const attr = document.documentElement.getAttribute('data-theme');
+      const initial = stored === 'light' || stored === 'dark' ? stored : (attr === 'light' ? 'light' : 'dark');
+      setTheme(initial);
+      document.documentElement.setAttribute('data-theme', initial);
+    } catch (e) { /* ignore */ }
+  }, []);
+
+  function toggleTheme() {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', next);
+  }
+
   return (
     <>
       {/* Cinematic Top Progress Bar */}
@@ -69,7 +87,7 @@ export function Nav() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[9000] transition-all duration-500 ${
           scrolled
-            ? 'bg-deep-forest/85 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/40 py-3 md:py-4'
+            ? 'bg-[var(--color-bg-primary)]/85 backdrop-blur-xl border-b border-[var(--color-border)] shadow-2xl shadow-black/40 py-3 md:py-4'
             : 'bg-transparent py-5 md:py-7'
         }`}
       >
@@ -87,11 +105,11 @@ export function Nav() {
                 priority
               />
             </div>
-            <div className="hidden sm:block leading-tight">
-              <p className="text-white text-[11px] font-bold tracking-wide group-hover:text-lime-light transition-colors duration-300">
+              <div className="hidden sm:block leading-tight">
+              <p className="text-[var(--logo-contrast)] text-[11px] font-bold tracking-wide transition-colors duration-300">
                 የምስጋና በጎ አድራጎት ድርጅት
               </p>
-              <p className="text-white/45 text-[8px] tracking-[0.2em] uppercase mt-0.5 group-hover:text-white/60 transition-colors duration-300">
+              <p className="text-[var(--logo-contrast)] text-[8px] tracking-[0.2em] uppercase mt-0.5 transition-colors duration-300">
                 Yemsigana Charity
               </p>
             </div>
@@ -106,8 +124,8 @@ export function Nav() {
                   key={link.label}
                   href={link.href}
                   className={`relative text-[13px] font-semibold tracking-wider uppercase transition-colors duration-300 py-1.5 px-0.5 group ${
-                    isActive ? 'text-lime font-bold' : 'text-white/60 hover:text-white'
-                  }`}
+                      isActive ? 'text-lime font-bold' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
+                    }`}
                 >
                   {link.label}
                   
@@ -119,7 +137,7 @@ export function Nav() {
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   ) : (
-                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white/40 group-hover:w-full transition-all duration-300" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-text-primary)]/40 group-hover:w-full transition-all duration-300" />
                   )}
                 </a>
               );
@@ -137,10 +155,21 @@ export function Nav() {
               Donate Now <ArrowRight size={12} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform duration-300" />
             </motion.a>
 
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              title="Toggle theme"
+              className="hidden sm:inline-flex w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-sm flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+
             <button
               onClick={() => setMenuOpen(true)}
-              className="w-10 h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:border-lime/40 hover:bg-lime/10 hover:text-lime hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer"
               aria-label="Open menu"
+              style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
             >
               <Menu size={16} />
             </button>
@@ -151,17 +180,18 @@ export function Nav() {
       {/* Mobile / Full-screen overlay menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[9500] bg-deep-forest/98 backdrop-blur-3xl flex flex-col px-8 py-8"
+            className="fixed inset-0 z-[9500] backdrop-blur-3xl flex flex-col px-8 py-8"
+            style={{ background: 'rgba(var(--color-deep-forest-rgb),0.98)' }}
           >
             {/* Header in menu */}
             <div className="flex items-center justify-between mb-16 max-w-7xl mx-auto w-full">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden ring-1 ring-lime/30">
+                <div className="w-10 h-10 rounded-full overflow-hidden ring-1" style={{ boxShadow: '0 0 0 1px rgba(var(--color-lime-rgb),0.3) inset' }}>
                   <Image
                     src="/images/logo.png"
                     alt="Yemsigana"
@@ -171,16 +201,25 @@ export function Nav() {
                   />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-white text-[11px] font-bold">የምስጋና በጎ አድራጎት ድርጅት</p>
-                  <p className="text-white/45 text-[8px] tracking-[0.18em] uppercase mt-0.5">Yemsigana Charity</p>
+                  <p className="text-[var(--logo-contrast)] text-[11px] font-bold">የምስጋና በጎ አድራጎት ድርጅት</p>
+                  <p className="text-[var(--logo-contrast)] text-[8px] tracking-[0.18em] uppercase mt-0.5">Yemsigana Charity</p>
                 </div>
               </div>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-lime hover:text-lime hover:bg-lime/10 hover:scale-105 transition-all duration-300 cursor-pointer"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer"
+                style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-primary)', background: 'var(--color-surface)' }}
                 aria-label="Close menu"
               >
                 <X size={16} />
+              </button>
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                title="Toggle theme"
+                className="ml-3 w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
+              >
+                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
               </button>
             </div>
 
@@ -198,11 +237,11 @@ export function Nav() {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     className={`font-black tracking-tight leading-none uppercase transition-all duration-300 flex items-center gap-4 group ${
-                      isActive ? 'text-lime font-black' : 'text-white/70 hover:text-lime-light'
+                      isActive ? 'text-lime font-black' : 'text-[var(--color-text-muted)] hover:text-lime-light'
                     }`}
                     style={{ fontSize: 'clamp(2rem, 7vw, 3.2rem)' }}
                   >
-                    <span className="text-[14px] font-serif font-normal italic text-white/30 group-hover:text-lime/50 transition-colors duration-300">
+                    <span className="text-[14px] font-serif font-normal italic transition-colors duration-300" style={{ color: 'var(--color-text-muted)' }}>
                       0{i + 1}
                     </span>
                     {link.label}
@@ -212,8 +251,8 @@ export function Nav() {
             </nav>
 
             {/* Footer in menu */}
-            <div className="pt-8 border-t border-white/5 flex items-center justify-between max-w-7xl mx-auto w-full">
-              <p className="text-white/20 text-[10px] tracking-widest uppercase font-semibold">
+            <div className="pt-8 border-t flex items-center justify-between max-w-7xl mx-auto w-full" style={{ borderColor: 'var(--color-border)' }}>
+              <p className="text-[10px] tracking-widest uppercase font-semibold" style={{ color: 'var(--color-text-muted)' }}>
                 © 2026 Yemsigana Charity
               </p>
               <a

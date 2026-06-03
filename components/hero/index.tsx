@@ -50,7 +50,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="relative w-full h-screen bg-deep-forest overflow-hidden">
+    <section id="hero" className="relative w-full h-screen bg-[var(--color-bg-primary)] overflow-hidden">
 
       {/* ── Background Images with Ken Burns ───────────── */}
       {slides.map((slide, i) => (
@@ -85,20 +85,7 @@ export function Hero() {
       ))}
 
       {/* ── Cinematic overlays ─────────────────────────── */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to right, rgba(var(--color-deep-forest-rgb), 0.88) 0%, rgba(var(--color-deep-forest-rgb), 0.65) 40%, rgba(var(--color-deep-forest-rgb), 0.18) 70%, transparent 100%)',
-          zIndex: 2,
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to top, rgba(var(--color-deep-forest-rgb), 0.75) 0%, transparent 50%)',
-          zIndex: 2,
-        }}
-      />
+      {/* Removed cinematic gradient overlays per user request */}
 
       {/* ── Content ────────────────────────────────────── */}
       <div className="relative h-full flex flex-col" style={{ zIndex: 3 }}>
@@ -136,23 +123,24 @@ export function Hero() {
                   {slides[current].location}
                 </p>
               </div>
-              <h1 className="text-white font-black leading-[0.92] tracking-tighter text-4xl">
+              <h1 className="text-[var(--hero-contrast)] font-black leading-[0.92] tracking-tighter text-4xl">
                 {slides[current].headline}
               </h1>
+              
               <h2 className="text-lime font-serif italic text-2xl leading-[1.05]">
                 {slides[current].subHeadline}
               </h2>
               <div className="h-px w-40 bg-gradient-to-r from-lime to-transparent mt-1" />
-              <p className="text-white/65 text-sm leading-[1.75] max-w-[300px] mt-1">
+              <p className="text-[var(--color-text-muted)] text-sm leading-[1.75] max-w-[300px] mt-1">
                 Yemisgana Charity Organization builds safe, modern schools for children in the Gurage Zone of Ethiopia.
               </p>
               <div className="flex items-center gap-4 mt-2">
                 <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light transition-all shadow-lg shadow-lime/25">
                   Our Mission →
                 </button>
-                <button className="flex items-center gap-2 text-white/70 text-[12px] font-semibold hover:text-white transition-colors">
-                  <div className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center">
-                    <svg width="10" height="12" viewBox="0 0 10 12" fill="white">
+                <button className="flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] transition-colors">
+                  <div className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center">
+                    <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor">
                       <path d="M1 1l8 5-8 5V1z" />
                     </svg>
                   </div>
@@ -175,7 +163,7 @@ export function Hero() {
             className={`rounded-full transition-all duration-500 ${
               i === current
                 ? 'w-8 h-1.5 bg-lime'
-                : 'w-1.5 h-1.5 bg-white/35 hover:bg-white/60'
+                : 'w-1.5 h-1.5 bg-[var(--color-text-muted)] hover:bg-[var(--color-text-primary)]'
             }`}
           />
         ))}
@@ -183,8 +171,8 @@ export function Hero() {
 
       {/* ── Animated scroll indicator ──────────────────── */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5" style={{ zIndex: 4 }}>
-        <p className="text-white/35 font-sans text-[8px] tracking-[0.3em] uppercase">Scroll</p>
-        <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-scroll-pulse" />
+        <p className="text-[var(--color-text-muted)] font-sans text-[8px] tracking-[0.3em] uppercase">Scroll</p>
+        <div className="w-px h-8 bg-gradient-to-b from-[rgba(var(--color-text-muted-rgb,10,30,18),0.4)] to-transparent animate-scroll-pulse" />
       </div>
 
     </section>

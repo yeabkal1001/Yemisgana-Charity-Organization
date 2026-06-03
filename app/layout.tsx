@@ -41,8 +41,25 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${barlow.variable} ${dmSerifDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${barlow.variable} ${dmSerifDisplay.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('theme');
+                  if (stored === 'light' || stored === 'dark') {
+                    document.documentElement.setAttribute('data-theme', stored);
+                    return;
+                  }
+                  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                  document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                } catch (e) { /* ignore */ }
+              })();
+            `
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

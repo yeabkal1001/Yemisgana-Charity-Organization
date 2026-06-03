@@ -36,11 +36,11 @@ const actions = [
 
 export function GetInvolved() {
   return (
-    <section id="get-involved" className="w-full bg-mid-forest relative overflow-hidden select-none border-t border-white/5 grid-bg">
+    <section id="get-involved" className="w-full bg-[var(--color-bg-secondary)] relative overflow-hidden select-none border-t border-[var(--color-border)] grid-bg">
 
       {/* Decorative vertical lines */}
-      <div className="absolute top-0 bottom-0 left-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-      <div className="absolute top-0 bottom-0 right-12 w-px bg-white/5 pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 left-12 w-px bg-[var(--color-border)] pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 right-12 w-px bg-[var(--color-border)] pointer-events-none hidden md:block" />
 
       {/* Background texture overlay */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none z-0">
@@ -48,7 +48,7 @@ export function GetInvolved() {
       </div>
 
       {/* ── Section Masthead ─────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 pt-24 md:pt-32 pb-12 md:pb-16 border-b border-white/5">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 pt-24 md:pt-32 pb-12 md:pb-16 border-b border-[var(--color-border)]">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -61,7 +61,7 @@ export function GetInvolved() {
               Get Involved
             </p>
             <h2
-              className="font-sans font-black text-white leading-[0.95] tracking-tighter"
+              className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter"
               style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
             >
               Join the <span className="font-serif italic font-normal text-lime">movement</span>.
@@ -73,7 +73,7 @@ export function GetInvolved() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-white/40 font-sans text-xs md:text-sm max-w-xs leading-relaxed"
+            className="text-[var(--color-text-muted)] font-sans text-xs md:text-sm max-w-xs leading-relaxed"
           >
             Together, we can build a future where every child in the Gurage Zone has access to quality education.
           </motion.p>
@@ -94,7 +94,7 @@ export function GetInvolved() {
               className={`group relative rounded-3xl p-8 border flex flex-col justify-between overflow-hidden transition-all duration-500 cursor-pointer min-h-[360px] ${
                 action.featured
                   ? 'bg-lime border-lime text-deep-forest hover:bg-lime-light hover:scale-[1.015] shadow-2xl'
-                  : 'bg-deep-forest/50 backdrop-blur-sm border-white/5 hover:border-white/15 hover:scale-[1.015]'
+                  : 'bg-[var(--color-bg-primary)]/50 backdrop-blur-sm border-[var(--color-border)] hover:scale-[1.015]'
               }`}
               style={{
                 boxShadow: action.featured ? `0 15px 40px -15px ${action.glow}` : 'none'
@@ -112,19 +112,15 @@ export function GetInvolved() {
 
               {/* Top Row: Number and Arrow */}
               <div className="flex items-center justify-between relative z-10">
-                <span
-                  className={`font-serif font-black text-2xl select-none transition-colors duration-500 ${
-                    action.featured ? 'text-deep-forest/20' : 'text-white/10 group-hover:text-lime/35'
-                  }`}
-                >
+                <span className="font-serif font-black text-2xl select-none transition-colors duration-500" style={{ color: action.featured ? 'var(--color-deep-forest)' : 'var(--color-text-muted)' }}>
                   {action.num}
                 </span>
 
                 <div
                   className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500 group-hover:scale-105 group-hover:rotate-45 ${
                     action.featured
-                      ? 'border-deep-forest/15 text-deep-forest bg-deep-forest/5'
-                      : 'border-white/10 text-white/50 bg-white/5 group-hover:border-lime/30 group-hover:text-lime'
+                      ? 'text-deep-forest bg-[var(--color-deep-forest)]/5 border-[var(--color-deep-forest)]'
+                      : 'text-[var(--color-text-muted)] bg-[var(--color-surface)]/5 border-[var(--color-border)] group-hover:border-lime/30 group-hover:text-lime'
                   }`}
                 >
                   <ArrowUpRight size={15} strokeWidth={2.5} />
@@ -135,7 +131,7 @@ export function GetInvolved() {
               <div className="relative z-10 mt-16">
                 <h3
                   className={`font-sans font-black tracking-tight mb-3 transition-colors duration-300 ${
-                    action.featured ? 'text-deep-forest' : 'text-white group-hover:text-lime-light'
+                    action.featured ? 'text-deep-forest' : 'text-[var(--color-text-primary)] group-hover:text-lime'
                   }`}
                   style={{ fontSize: 'clamp(1.5rem, 2.5vw, 1.8rem)' }}
                 >
@@ -144,7 +140,7 @@ export function GetInvolved() {
                 
                 <p
                   className={`font-sans text-xs md:text-sm leading-relaxed transition-colors duration-300 ${
-                    action.featured ? 'text-deep-forest/75' : 'text-white/40 group-hover:text-white/70'
+                    action.featured ? 'text-deep-forest' : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-text-primary)]'
                   }`}
                 >
                   {action.desc}
@@ -162,7 +158,7 @@ export function GetInvolved() {
               {/* Decorative line indicators */}
               <div 
                 className={`absolute left-8 bottom-0 right-8 h-[2px] transition-opacity duration-500 opacity-0 group-hover:opacity-100 ${
-                  action.featured ? 'bg-deep-forest/20' : 'bg-gradient-to-r from-transparent via-lime to-transparent'
+                  action.featured ? 'bg-[var(--color-deep-forest)]/20' : 'bg-gradient-to-r from-transparent via-lime to-transparent'
                 }`} 
               />
             </motion.a>
@@ -171,7 +167,7 @@ export function GetInvolved() {
       </div>
 
       {/* ── Decorative closing quote ──────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 py-16 md:py-24 border-t border-white/5 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:px-24 py-16 md:py-24 border-t border-[var(--color-border)] text-center">
         
         {/* Decorative Quote Mark */}
         <div
@@ -187,8 +183,8 @@ export function GetInvolved() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="font-serif italic font-normal text-white/75 leading-[1.6] mx-auto relative z-10 max-w-3xl"
-          style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)' }}
+          className="font-serif italic font-normal leading-[1.6] mx-auto relative z-10 max-w-3xl"
+          style={{ color: 'var(--color-text-primary)', fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)' }}
         >
           Education is not a privilege. It is the{' '}
           <span className="text-lime not-italic font-sans font-black tracking-wide uppercase text-[15px] md:text-[19px] ml-1">
@@ -199,7 +195,7 @@ export function GetInvolved() {
       </div>
 
       {/* ── Footer ──────────────────────────────────────────────── */}
-      <footer className="relative z-10 w-full border-t border-white/5 py-8 md:py-10 bg-deep-forest/40 backdrop-blur-md">
+      <footer className="relative z-10 w-full border-t border-[var(--color-border)] py-8 md:py-10 bg-[var(--color-bg-primary)]/40 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* Logo & Title */}
@@ -213,13 +209,13 @@ export function GetInvolved() {
               />
             </div>
             <div>
-              <p className="text-white font-sans text-[11px] font-bold tracking-wide">የምስጋና በጎ አድራጎት ድርጅት</p>
-              <p className="text-white/35 font-sans text-[8px] tracking-[0.2em] uppercase mt-0.5">Yemsigana Charity</p>
+              <p className="font-sans text-[11px] font-bold tracking-wide" style={{ color: 'var(--logo-contrast)' }}>የምስጋና በጎ አድራጎት ድርጅት</p>
+              <p className="font-sans text-[8px] tracking-[0.2em] uppercase mt-0.5" style={{ color: 'var(--logo-contrast)' }}>Yemsigana Charity</p>
             </div>
           </div>
 
           {/* Copyrights and links */}
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-white/35 font-sans text-[10px] tracking-wider font-semibold">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 font-sans text-[10px] tracking-wider font-semibold" style={{ color: 'var(--color-text-muted)' }}>
             <a href="#" className="hover:text-lime transition-colors duration-300">Privacy Policy</a>
             <a href="#" className="hover:text-lime transition-colors duration-300">Terms of Service</a>
             <span>© 2026 Yemsigana Charity. All rights reserved.</span>
@@ -230,7 +226,8 @@ export function GetInvolved() {
             {[Facebook, Twitter, Instagram].map((Icon, i) => (
               <a
                 key={i} href="#"
-                className="w-9 h-9 rounded-full bg-white/3 border border-white/10 flex items-center justify-center text-white/45 hover:bg-lime hover:text-deep-forest hover:border-lime hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
+                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300"
+                style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-muted)' }}
               >
                 <Icon size={13} strokeWidth={2} />
               </a>

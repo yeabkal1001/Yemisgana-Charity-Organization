@@ -61,11 +61,11 @@ export function About() {
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
 
   return (
-    <section id="about" ref={containerRef} className="w-full bg-mid-forest relative overflow-hidden select-none border-b border-white/5 grid-bg">
+    <section id="about" ref={containerRef} className="w-full bg-[var(--color-bg-secondary)] relative overflow-hidden select-none border-b border-[var(--color-border)] grid-bg">
 
       {/* Decorative vertical lines */}
-      <div className="absolute top-0 bottom-0 left-12 w-px bg-white/5 pointer-events-none hidden md:block" />
-      <div className="absolute top-0 bottom-0 right-12 w-px bg-white/5 pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 left-12 w-px bg-[var(--color-border)] pointer-events-none hidden md:block" />
+      <div className="absolute top-0 bottom-0 right-12 w-px bg-[var(--color-border)] pointer-events-none hidden md:block" />
 
       {/* ── Headline band ──────────────────────────────── */}
       <div className="px-6 md:px-20 lg:px-24 pt-24 md:pt-32 pb-10 md:pb-14 relative z-10">
@@ -86,7 +86,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="font-sans font-black text-white leading-[0.95] tracking-tighter"
+            className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
           >
             Building <span className="font-serif italic font-normal text-lime">today</span>.<br />
@@ -98,7 +98,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-white/40 font-sans text-xs md:text-sm max-w-xs leading-relaxed"
+            className="text-[var(--color-text-muted)] font-sans text-xs md:text-sm max-w-xs leading-relaxed"
           >
             A dedicated collective focused on constructing safe, modern learning environments for students in the Gurage Zone.
           </motion.p>
@@ -106,12 +106,12 @@ export function About() {
       </div>
 
       {/* ── Marquee ticker ───────────────────────────────────────── */}
-      <div className="border-y border-white/5 overflow-hidden py-3.5 bg-deep-forest/80 backdrop-blur-sm relative z-10">
+      <div className="border-y border-[var(--color-border)] overflow-hidden py-3.5 backdrop-blur-sm relative z-10" style={{background: 'transparent'}}>
         <div className="flex whitespace-nowrap animate-marquee">
           {[...tickerItems, ...tickerItems].map((item, i) => (
             <span
               key={i}
-              className="text-white/60 font-sans font-bold text-[10px] tracking-[0.25em] uppercase px-8"
+              className="text-[var(--color-text-muted)] font-sans font-bold text-[10px] tracking-[0.25em] uppercase px-8"
             >
               {item}
               <span className="text-lime/50 mx-4">·</span>
@@ -129,22 +129,22 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, amount: 0.25 }}
-          className="flex-1 flex flex-col justify-between px-6 md:px-20 lg:px-24 py-12 md:py-16 lg:border-r border-white/5"
+          className="flex-1 flex flex-col justify-between px-6 md:px-20 lg:px-24 py-12 md:py-16 lg:border-r border-[var(--color-border)]"
         >
           <div>
-            <p className="text-white/70 font-sans text-base md:text-lg leading-[1.8] max-w-xl">
+            <p className="text-[var(--color-text-muted)] font-sans text-base md:text-lg leading-[1.8] max-w-xl">
               Founded on the belief that every child deserves a safe place to learn,{' '}
-              <strong className="text-white font-bold group">Yemisgana Charity Organization</strong>{' '}
+              <strong className="text-[var(--color-text-primary)] font-bold group">Yemisgana Charity Organization</strong>{' '}
               works in the Gurage Zone of Ethiopia — constructing new schools, renovating
               dilapidated infrastructure, and equipping classrooms with the resources students need to thrive.
             </p>
 
             {/* Pull quote */}
-            <div className="mt-12 bg-white/3 border border-white/5 rounded-2xl p-6 relative overflow-hidden group">
-              <div className="absolute right-4 top-4 text-white/5 group-hover:text-lime/10 transition-colors duration-500">
+            <div className="mt-12 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 relative overflow-hidden group">
+              <div className="absolute right-4 top-4 text-[var(--color-text-muted)] group-hover:text-lime/10 transition-colors duration-500">
                 <Quote size={60} strokeWidth={1} />
               </div>
-              <p className="text-white/80 font-serif italic text-[15px] md:text-[17px] leading-[1.6] relative z-10">
+              <p className="text-[var(--color-text-primary)] font-serif italic text-[15px] md:text-[17px] leading-[1.6] relative z-10">
                 "Education is the most powerful weapon which you can use to change the world."
               </p>
               <cite className="text-lime font-sans text-[9px] font-bold tracking-[0.2em] uppercase not-italic mt-4 block relative z-10">
@@ -155,7 +155,7 @@ export function About() {
 
           {/* Interactive Values Section */}
           <div className="mt-12">
-            <p className="text-white/30 text-[9px] font-bold tracking-[0.25em] uppercase mb-4">Our Core Values</p>
+            <p className="text-[var(--color-text-muted)] text-[9px] font-bold tracking-[0.25em] uppercase mb-4">Our Core Values</p>
             <div className="flex flex-wrap gap-2.5">
               {values.map((v, i) => (
                 <div
@@ -165,7 +165,7 @@ export function About() {
                   className={`px-4 py-2 rounded-full border text-[10px] font-bold tracking-[0.18em] uppercase transition-all duration-300 cursor-default relative overflow-hidden ${
                     hoveredValue === i
                       ? 'border-lime text-deep-forest bg-lime scale-[1.03]'
-                      : 'border-white/10 text-white/75 bg-white/3 hover:border-white/35'
+                      : 'border-[var(--color-border)] text-[var(--color-text-muted)] bg-[var(--color-surface)] hover:border-[var(--color-border)]'
                   }`}
                 >
                   {v.name}
@@ -184,13 +184,13 @@ export function About() {
                     y: hoveredValue === i ? 0 : 10 
                   }}
                   transition={{ duration: 0.3 }}
-                  className="absolute inset-0 text-white/50 text-[11px] font-sans leading-relaxed pointer-events-none"
+                  className="absolute inset-0 text-[var(--color-text-muted)] text-[11px] font-sans leading-relaxed pointer-events-none"
                 >
                   {v.desc}
                 </motion.p>
               ))}
               {hoveredValue === null && (
-                <p className="text-white/20 text-[11px] font-sans leading-relaxed italic">
+                <p className="text-[var(--color-text-muted)] text-[11px] font-sans leading-relaxed italic">
                   Hover over a value to learn more about our commitment.
                 </p>
               )}
@@ -206,7 +206,7 @@ export function About() {
           viewport={{ once: true, amount: 0.25 }}
           className="flex-1 flex items-center justify-center p-6 md:p-12 lg:p-16 min-h-[340px] md:min-h-[480px]"
         >
-          <div className="relative w-full h-full min-h-[300px] md:min-h-[400px] rounded-3xl overflow-hidden group">
+            <div className="relative w-full h-full min-h-[300px] md:min-h-[400px] rounded-3xl overflow-hidden group">
             
             {/* Visual offset border decoration */}
             <div className="absolute inset-0 border border-lime/20 rounded-3xl translate-x-3 translate-y-3 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-700 ease-out" />
@@ -219,20 +219,21 @@ export function About() {
               style={{ objectPosition: 'center' }}
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/60 via-transparent to-transparent pointer-events-none" />
+            {/* overlay removed per user request */}
 
             {/* Floating mission card */}
-            <motion.div
+              <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.7 }}
               viewport={{ once: true }}
-              className="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-[270px] bg-deep-forest/85 backdrop-blur-xl rounded-2xl p-5 border border-white/10 shadow-2xl"
+              className="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-[270px] backdrop-blur-xl rounded-2xl p-5 border border-[var(--color-border)] shadow-2xl"
+              style={{ background: 'transparent' }}
             >
               <p className="text-lime font-sans text-[9px] font-black tracking-[0.25em] uppercase mb-1.5">
                 Our Mission
               </p>
-              <p className="text-white/70 font-sans text-[11px] leading-[1.75]">
+              <p className="text-[var(--color-text-muted)] font-sans text-[11px] leading-[1.75]">
                 To ensure every child in the Gurage Zone has access to quality education —
                 regardless of background or location.
               </p>
@@ -242,7 +243,7 @@ export function About() {
       </div>
 
       {/* ── Stat Wall ────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-white/5 relative z-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-[var(--color-border)] relative z-10">
         {stats.map((stat, i) => (
           <motion.div
             key={i}
@@ -250,17 +251,17 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: i * 0.08 }}
             viewport={{ once: true, amount: 0.4 }}
-            className={`flex flex-col items-center justify-center py-10 md:py-14 border-white/5 hover:bg-white/[0.02] transition-colors duration-500 cursor-default group ${
+            className={`flex flex-col items-center justify-center py-10 md:py-14 border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-colors duration-500 cursor-default group ${
               i % 2 === 0 ? 'border-r' : 'lg:border-r'
             } ${i < 2 ? 'border-b lg:border-b-0' : ''}`}
           >
             <p
-              className="font-sans font-black text-white leading-none tracking-tighter mb-2 group-hover:text-lime transition-colors duration-300"
+              className="font-sans font-black text-[var(--color-text-primary)] leading-none tracking-tighter mb-2 group-hover:text-lime transition-colors duration-300"
               style={{ fontSize: 'clamp(1.8rem, 3.8vw, 3rem)' }}
             >
               <CountUp target={stat.number} suffix={stat.suffix} />
             </p>
-            <p className="text-white/40 font-sans text-[9px] text-center leading-snug whitespace-pre-line tracking-[0.18em] uppercase group-hover:text-white/60 transition-colors duration-300">
+            <p className="text-[var(--color-text-muted)] font-sans text-[9px] text-center leading-snug whitespace-pre-line tracking-[0.18em] uppercase group-hover:text-[var(--color-text-primary)] transition-colors duration-300">
               {stat.label}
             </p>
           </motion.div>

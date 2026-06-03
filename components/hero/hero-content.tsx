@@ -36,26 +36,26 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
 
         {/* Slide counter + location */}
         <motion.div variants={item} className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-lime font-black text-[11px] tabular-nums">
+            <div className="flex items-center gap-2">
+            <span className="text-[var(--hero-contrast)] font-black text-[11px] tabular-nums">
               {String(slideNum).padStart(2, '0')}
             </span>
-            <div className="w-6 h-px bg-white/25" />
-            <span className="text-white/35 font-sans text-[11px] tabular-nums">
+            <div className="w-6 h-px bg-[var(--color-text-muted)]" />
+            <span className="text-[var(--hero-contrast)] font-sans text-[11px] tabular-nums">
               {String(totalSlides).padStart(2, '0')}
             </span>
           </div>
-          <div className="w-px h-3.5 bg-white/20" />
+          <div className="w-px h-3.5 bg-[var(--color-text-muted)]" />
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
-            <span className="text-white/60 font-sans text-[10px] tracking-[0.2em] uppercase">{location}</span>
+            <span className="text-[var(--hero-contrast)] font-sans text-[10px] tracking-[0.2em] uppercase">{location}</span>
           </div>
         </motion.div>
 
         {/* Main headline */}
         <motion.h1
           variants={item}
-          className="text-white font-black leading-[0.9] tracking-tighter"
+          className="text-[var(--hero-contrast)] font-black leading-[0.9] tracking-tighter"
           style={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)' }}
         >
           {headline}
@@ -75,7 +75,8 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
         {/* Description */}
         <motion.p
           variants={item}
-          className="text-white/65 text-[13px] md:text-sm leading-[1.8] max-w-[360px] mt-1 font-sans"
+          className="text-[var(--hero-contrast)] text-[13px] md:text-sm leading-[1.8] max-w-[360px] mt-1 font-sans"
+          style={{ opacity: 0.95 }}
         >
           Yemisgana Charity Organization builds and renovates schools across the Gurage Zone of Ethiopia —
           creating safe, inspiring places where every child can thrive.
@@ -86,9 +87,9 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
           <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] tracking-wide rounded-full hover:bg-lime-light hover:scale-105 active:scale-95 transition-all shadow-xl shadow-lime/25">
             Our Mission →
           </button>
-          <button className="flex items-center gap-2.5 text-white hover:text-lime transition-colors group font-sans">
-            <div className="w-8 h-8 rounded-full border border-white/45 group-hover:border-lime flex items-center justify-center transition-colors">
-              <Play size={10} className="fill-white group-hover:fill-lime transition-colors ml-[1px]" />
+          <button className="flex items-center gap-2.5 text-[var(--color-text-muted)] hover:text-lime transition-colors group font-sans">
+            <div className="w-8 h-8 rounded-full border border-[var(--color-border)] group-hover:border-lime flex items-center justify-center transition-colors">
+              <Play size={10} className="text-[var(--color-text-primary)] group-hover:text-lime transition-colors ml-[1px]" />
             </div>
             <span className="text-[12px] font-semibold">Watch Our Story</span>
           </button>

@@ -52,9 +52,43 @@
   --color-purple-rgb:      168, 85, 247;
   --color-sky-rgb:         56, 189, 248;
   --color-red-rgb:         239, 68, 68;
+  
+  /* Semantic alias tokens (dark defaults) */
+  --color-bg-primary: var(--color-deep-forest);
+  --color-bg-secondary: var(--color-mid-forest);
+  --color-text-primary: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.6);
+  --color-border: rgba(255, 255, 255, 0.05);
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.06);
+  --color-hero-overlay-rgb: var(--color-deep-forest-rgb);
+  --color-scrollbar-track: var(--color-deep-forest);
+  /* Hero-specific text token (defaults to primary text color) */
+  --hero-text-color: var(--color-text-primary);
+  /* Hero contrast token (force white where needed) */
+  --hero-contrast: #ffffff;
+  /* Logo contrast token (force white for logo text on light theme) */
+  --logo-contrast: #ffffff;
 }
 
 /* ─── Base ───────────────────────────────────────────────────── */
+/* Light theme remap */
+[data-theme="light"] {
+  --color-bg-primary: var(--color-cream);
+  --color-bg-secondary: var(--color-parchment);
+  --color-text-primary: var(--color-forest);
+  --color-text-muted: rgba(10, 30, 18, 0.6);
+  --color-border: rgba(10, 30, 18, 0.08);
+  --color-surface: rgba(10, 30, 18, 0.04);
+  --color-surface-hover: rgba(10, 30, 18, 0.06);
+  --color-hero-overlay-rgb: var(--color-cream-rgb);
+  --color-scrollbar-track: var(--color-cream);
+  /* Ensure hero text uses black on light theme for better readability */
+  --hero-text-color: var(--color-forest);
+  /* Keep hero contrast white on light theme */
+  --hero-contrast: #ffffff;
+  --logo-contrast: #ffffff;
+}
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
@@ -71,19 +105,19 @@
 
   body {
     font-family: var(--font-sans);
-    background: var(--color-deep-forest);
-    color: #fff;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
     overflow-x: hidden;
   }
 
   ::selection {
     background: var(--color-lime);
-    color: var(--color-deep-forest);
+    color: var(--color-bg-primary);
   }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: var(--color-deep-forest); }
+  ::-webkit-scrollbar-track { background: var(--color-scrollbar-track); }
   ::-webkit-scrollbar-thumb { background: var(--color-lime); border-radius: 2px; }
 }
 
@@ -170,7 +204,7 @@
   /* Border glow class */
   .glow-border {
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
     transition: border-color 0.4s ease, box-shadow 0.4s ease;
   }
   .glow-border:hover {
