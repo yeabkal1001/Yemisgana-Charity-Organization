@@ -29,8 +29,8 @@
   --color-deep-forest: #030a03;
   --color-cream:       #f5f2eb;
   --color-parchment:   #fcfbf9;
-  --color-lime:        #a3e635;
-  --color-lime-light:  #bef264;
+  --color-lime:        #8fb900;
+  --color-lime-light:  #8fb900;
   --color-amber:       #d97706;
   --color-amber-light: #f59e0b;
   --color-olive:       #2d5a1b;
@@ -87,7 +87,7 @@
   --hero-text-color: var(--color-forest);
   /* Keep hero contrast white on light theme */
   --hero-contrast: #ffffff;
-  --logo-contrast: #ffffff;
+  --logo-contrast: var(--color-forest);
 }
 @layer base {
   *, *::before, *::after {
