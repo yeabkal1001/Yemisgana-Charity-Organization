@@ -84,7 +84,7 @@ export function Approach() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter"
+            className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter section-title"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
           >
             Why the <span className="font-serif italic font-normal text-lime">Gurage Zone</span>?

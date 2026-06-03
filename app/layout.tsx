@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Barlow, DM_Serif_Display } from 'next/font/google';
+import { Barlow, DM_Serif_Display, Playfair_Display } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { Nav } from '@/components/nav';
 import './globals.css';
@@ -16,6 +16,13 @@ const dmSerifDisplay = DM_Serif_Display({
   variable: '--font-dm-serif',
   style: ['normal', 'italic'],
   weight: '400',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  weight: ['400', '600', '700', '900'],
   display: 'swap',
 });
 
@@ -41,7 +48,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-theme="dark" className={`${barlow.variable} ${dmSerifDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${barlow.variable} ${dmSerifDisplay.variable} ${playfair.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{

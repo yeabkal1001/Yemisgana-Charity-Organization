@@ -55,8 +55,8 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
         {/* Main headline */}
         <motion.h1
           variants={item}
-          className="text-[var(--hero-contrast)] font-black leading-[0.9] tracking-tighter"
-          style={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)' }}
+          className="text-[var(--hero-contrast)] hero-headline font-black"
+          style={{ fontSize: 'clamp(2.4rem, 5.2vw, 4rem)' }}
         >
           {headline}
         </motion.h1>
@@ -75,7 +75,7 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
         {/* Description */}
         <motion.p
           variants={item}
-          className="text-[var(--hero-contrast)] text-[13px] md:text-sm leading-[1.8] max-w-[360px] mt-1 font-sans"
+          className="text-[var(--hero-contrast)] text-[14px] md:text-sm leading-[1.8] max-w-[420px] mt-2 font-sans"
           style={{ opacity: 0.95 }}
         >
           Yemisgana Charity Organization builds and renovates schools across the Gurage Zone of Ethiopia —
@@ -84,10 +84,10 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
 
         {/* CTAs */}
         <motion.div variants={item} className="flex items-center gap-5 mt-2">
-          <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] tracking-wide rounded-full hover:bg-lime-light hover:scale-105 active:scale-95 transition-all shadow-xl shadow-lime/25">
+          <button className="btn-primary">
             Our Mission →
           </button>
-          <button className="flex items-center gap-2.5 text-[var(--color-text-muted)] hover:text-lime transition-colors group font-sans">
+          <button className="btn-ghost flex items-center gap-2.5 font-sans">
             <div className="w-8 h-8 rounded-full border border-[var(--color-border)] group-hover:border-lime flex items-center justify-center transition-colors">
               <Play size={10} className="text-[var(--color-text-primary)] group-hover:text-lime transition-colors ml-[1px]" />
             </div>

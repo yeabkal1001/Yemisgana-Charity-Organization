@@ -87,7 +87,7 @@ export function Nav() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[9000] transition-all duration-500 ${
           scrolled
-            ? 'bg-[var(--color-bg-primary)]/85 backdrop-blur-xl border-b border-[var(--color-border)] shadow-2xl shadow-black/40 py-3 md:py-4'
+            ? 'bg-[var(--color-bg-primary)]/80 backdrop-blur-2xl border-b border-[var(--color-border)] shadow-[0_8px_30px_rgba(0,0,0,0.35)] py-3 md:py-4'
             : 'bg-transparent py-5 md:py-7'
         }`}
       >

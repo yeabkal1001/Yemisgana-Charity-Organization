@@ -85,7 +85,13 @@ export function Hero() {
       ))}
 
       {/* ── Cinematic overlays ─────────────────────────── */}
-      {/* Removed cinematic gradient overlays per user request */}
+      {/* Decorative floating SVG accents */}
+      <svg className="absolute right-12 top-24 w-28 h-28 opacity-10 pointer-events-none animate-floaty" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="40" fill="rgba(163,230,53,0.06)" />
+      </svg>
+      <svg className="absolute left-10 bottom-32 w-20 h-20 opacity-8 pointer-events-none animate-floaty" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="80" height="80" rx="16" fill="rgba(255,255,255,0.03)" />
+      </svg>
 
       {/* ── Content ────────────────────────────────────── */}
       <div className="relative h-full flex flex-col" style={{ zIndex: 3 }}>

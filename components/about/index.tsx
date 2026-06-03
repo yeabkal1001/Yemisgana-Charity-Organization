@@ -86,7 +86,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter"
+            className="font-sans font-black text-[var(--color-text-primary)] leading-[0.95] tracking-tighter section-title"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
           >
             Building <span className="font-serif italic font-normal text-lime">today</span>.<br />
@@ -141,9 +141,9 @@ export function About() {
 
             {/* Pull quote */}
             <div className="mt-12 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 relative overflow-hidden group">
-              <div className="absolute right-4 top-4 text-[var(--color-text-muted)] group-hover:text-lime/10 transition-colors duration-500">
-                <Quote size={60} strokeWidth={1} />
-              </div>
+                <div className="absolute text-[var(--color-text-muted)] transition-colors duration-500" style={{ right: '-6%', top: '-12%', opacity: 0.08, zIndex: 0, pointerEvents: 'none' }}>
+                  <Quote size={72} strokeWidth={1} />
+                </div>
               <p className="text-[var(--color-text-primary)] font-serif italic text-[15px] md:text-[17px] leading-[1.6] relative z-10">
                 "Education is the most powerful weapon which you can use to change the world."
               </p>

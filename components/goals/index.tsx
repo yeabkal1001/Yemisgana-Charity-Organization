@@ -114,7 +114,7 @@ export function Goals() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
-                className={`group relative rounded-3xl p-8 border border-[var(--color-border)] bg-[var(--color-bg-primary)]/50 backdrop-blur-sm flex flex-col justify-between overflow-hidden transition-all duration-500 hover:scale-[1.015] ${goal.gridClass}`}
+                className={`group relative rounded-3xl p-8 border border-[var(--color-border)] bg-[var(--color-bg-primary)]/50 backdrop-blur-sm flex flex-col justify-between overflow-hidden transition-all duration-500 hover:scale-[1.015] ${goal.gridClass} card-elevated`}
                 style={{
                   boxShadow: `inset 0 0 20px rgba(var(--color-text-primary-rgb,10,30,18), 0.01)`
                 }}

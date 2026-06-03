@@ -51,7 +51,7 @@ export function WhatWeDo() {
       {/* ── Section Masthead ─────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 md:px-20 lg:px-24 mb-16 md:mb-20">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -62,7 +62,7 @@ export function WhatWeDo() {
               Areas of Focus
             </p>
             <h2
-              className="text-[var(--color-text-primary)] font-sans font-black leading-[0.95] tracking-tighter"
+              className="text-[var(--color-text-primary)] font-sans font-black leading-[0.95] tracking-tighter section-title"
               style={{ fontSize: 'clamp(2rem, 5.5vw, 4.8rem)' }}
             >
               How We <span className="text-lime font-serif italic font-normal">Uplift</span>.
@@ -131,10 +131,10 @@ export function WhatWeDo() {
                       {pillar.num}
                     </span>
                     
-                    <div 
-                      className="w-11 h-11 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-muted)] transition-all duration-500 group-hover:bg-lime group-hover:text-deep-forest group-hover:border-lime group-hover:rotate-12"
-                    >
-                      <Icon size={18} strokeWidth={1.5} />
+                    <div className="w-11 h-11 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-muted)] transition-all duration-500 group-hover:bg-lime group-hover:text-deep-forest group-hover:border-lime group-hover:rotate-12">
+                      <div className="icon-float">
+                        <Icon size={18} strokeWidth={1.5} />
+                      </div>
                     </div>
                   </div>
 
