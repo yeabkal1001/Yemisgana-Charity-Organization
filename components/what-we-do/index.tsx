@@ -115,6 +115,9 @@ export function WhatWeDo() {
                     className="object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-105"
                   />
                   
+                  {/* Backdrop blur layer for text readability on hover */}
+                  <div className="absolute inset-0 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  
                   {/* radial gradient overlay removed per user request */}
                   <div className={`absolute inset-0 bg-gradient-to-b ${pillar.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
                 </div>

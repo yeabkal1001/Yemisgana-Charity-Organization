@@ -1,4 +1,7 @@
 {
   "css.customData": [".vscode/tailwind.json"],
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "kiroAgent.enableCodebaseIndexing": true,
+  "kiroAgent.enableDebugLogs": true,
+  "kiroAgent.enableTabAutocomplete": true
 }

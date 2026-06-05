@@ -167,7 +167,7 @@ export function Nav() {
 
             <button
               onClick={() => setMenuOpen(true)}
-              className="w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer"
+              className="lg:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer"
               aria-label="Open menu"
               style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
             >
