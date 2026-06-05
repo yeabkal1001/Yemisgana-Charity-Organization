@@ -1,28 +1,20 @@
 import type { Metadata } from 'next';
-import { Barlow, DM_Serif_Display, Playfair_Display } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { Nav } from '@/components/nav';
 import './globals.css';
 
-const barlow = Barlow({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-barlow',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-inter',
+  weight: ['300', '400', '600', '700', '800'],
   display: 'swap',
 });
 
-const dmSerifDisplay = DM_Serif_Display({
+const poppins = Poppins({
   subsets: ['latin'],
-  variable: '--font-dm-serif',
-  style: ['normal', 'italic'],
-  weight: '400',
-  display: 'swap',
-});
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  weight: ['400', '600', '700', '900'],
+  variable: '--font-poppins',
+  weight: ['400', '600', '700', '800'],
   display: 'swap',
 });
 
@@ -48,7 +40,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-theme="dark" className={`${barlow.variable} ${dmSerifDisplay.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
