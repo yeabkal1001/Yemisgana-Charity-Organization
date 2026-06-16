@@ -94,7 +94,7 @@ export function Nav() {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 lg:px-12">
 
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a href="#" aria-label="Go to homepage" className="flex items-center gap-3 group">
             <div className="w-10 h-10 md:w-11 md:h-11 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-lime/30 group-hover:ring-lime/80 group-hover:scale-105 transition-all duration-500">
               <Image
                 src="/images/logo.png"
