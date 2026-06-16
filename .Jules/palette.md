@@ -1,0 +1,3 @@
+## 2026-06-16 - Interactive Elements and Hover States
+**Learning:** Interactive UI elements like tags that reveal information on hover ('onMouseEnter') are inaccessible to keyboard users unless they are natively focusable elements (like buttons) with corresponding focus events ('onFocus'/'onBlur'). Furthermore, revealed text needs 'aria-live' to be read by screen readers.
+**Action:** Always use semantic interactive elements (e.g., <button>) for hover-triggered reveals, bind both mouse and focus events, provide visible focus states with 'focus-visible', and wrap the revealed description in an 'aria-live' region.
