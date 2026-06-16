@@ -158,23 +158,25 @@ export function About() {
             <p className="text-[var(--color-text-muted)] text-[9px] font-bold tracking-[0.25em] uppercase mb-4">Our Core Values</p>
             <div className="flex flex-wrap gap-2.5">
               {values.map((v, i) => (
-                <div
+                <button
                   key={v.name}
                   onMouseEnter={() => setHoveredValue(i)}
                   onMouseLeave={() => setHoveredValue(null)}
-                  className={`px-4 py-2 rounded-full border text-[10px] font-bold tracking-[0.18em] uppercase transition-all duration-300 cursor-default relative overflow-hidden ${
+                  onFocus={() => setHoveredValue(i)}
+                  onBlur={() => setHoveredValue(null)}
+                  className={`px-4 py-2 rounded-full border text-[10px] font-bold tracking-[0.18em] uppercase transition-all duration-300 relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)] ${
                     hoveredValue === i
                       ? 'border-lime text-deep-forest bg-lime scale-[1.03]'
-                      : 'border-[var(--color-border)] text-[var(--color-text-muted)] bg-[var(--color-surface)] hover:border-[var(--color-border)]'
+                      : 'border-[var(--color-border)] text-[var(--color-text-muted)] bg-[var(--color-surface)] hover:border-[var(--color-border)] cursor-pointer'
                   }`}
                 >
                   {v.name}
-                </div>
+                </button>
               ))}
             </div>
             
             {/* Value detail description */}
-            <div className="h-10 mt-4 relative overflow-hidden">
+            <div className="h-10 mt-4 relative overflow-hidden" aria-live="polite">
               {values.map((v, i) => (
                 <motion.p
                   key={v.name}
@@ -191,7 +193,7 @@ export function About() {
               ))}
               {hoveredValue === null && (
                 <p className="text-[var(--color-text-muted)] text-[11px] font-sans leading-relaxed italic">
-                  Hover over a value to learn more about our commitment.
+                  Hover over or focus a value to learn more about our commitment.
                 </p>
               )}
             </div>
