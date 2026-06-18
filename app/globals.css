@@ -214,6 +214,13 @@
 
   /* Primary button */
   .btn-primary {
+    outline: none;
+  }
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+  .btn-primary {
     background: linear-gradient(180deg, var(--color-lime), var(--color-lime-light));
     color: var(--color-deep-forest);
     padding: 0.6rem 1.1rem;
@@ -264,6 +271,13 @@
   .icon-float:hover { transform: translateY(-6px) rotate(-6deg) scale(1.05); }
 
   /* Ghost button */
+  .btn-ghost {
+    outline: none;
+  }
+  .btn-ghost:focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
   .btn-ghost {
     border: 1px solid rgba(255,255,255,0.06);
     background: transparent;
