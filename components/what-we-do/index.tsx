@@ -97,7 +97,10 @@ export function WhatWeDo() {
                 viewport={{ once: true }}
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`relative rounded-3xl overflow-hidden min-h-[500px] flex flex-col justify-end p-8 border transition-all duration-700 ease-out cursor-pointer group ${
+                onFocus={() => setHoveredIndex(idx)}
+                onBlur={() => setHoveredIndex(null)}
+                tabIndex={0}
+                className={`relative rounded-3xl overflow-hidden min-h-[500px] flex flex-col justify-end p-8 border transition-all duration-700 ease-out cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-bg-primary)] ${
                   isHovered 
                     ? 'border-[var(--color-border)] shadow-2xl scale-[1.02]' 
                     : 'border-[var(--color-border)]'
