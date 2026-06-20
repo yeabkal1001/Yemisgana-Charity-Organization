@@ -226,7 +226,7 @@ export function GetInvolved() {
             {[Facebook, Twitter, Instagram].map((Icon, i) => (
               <a
                 key={i} href="#"
-                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300"
+                aria-label={`Visit our ${i === 0 ? "Facebook" : i === 1 ? "Twitter" : "Instagram"} page`} className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
                 style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-muted)' }}
               >
                 <Icon size={13} strokeWidth={2} />

@@ -74,8 +74,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       expect(hamburgerButton).toBeTruthy();
       
       // Should not have hidden class at mobile viewport
-      const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      expect(hamburgerButton?.classList.contains('hidden')).toBe(false);
     });
 
     it('should display hamburger button at 480px (mobile)', () => {
@@ -92,8 +91,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       
       expect(hamburgerButton).toBeTruthy();
       
-      const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      expect(hamburgerButton?.classList.contains('hidden')).toBe(false);
     });
 
     it('should display hamburger button at 768px (tablet)', () => {
@@ -110,8 +108,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       
       expect(hamburgerButton).toBeTruthy();
       
-      const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      expect(hamburgerButton?.classList.contains('hidden')).toBe(false);
     });
 
     it('should display hamburger button at 1023px (just below lg breakpoint)', () => {
@@ -129,8 +126,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       expect(hamburgerButton).toBeTruthy();
       
       // This is critical - at 1023px (one pixel below lg), hamburger should be visible
-      const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      expect(hamburgerButton?.classList.contains('hidden')).toBe(false);
     });
 
     // Property-based test: Hamburger should be visible at all mobile/tablet widths

@@ -1,0 +1,3 @@
+## 2024-06-20 - Adding explicit ARIA labels to hero buttons and interactive icons
+**Learning:** Found an accessibility issue pattern where functional icons (social media links) and generic hero buttons were missing explicit ARIA labels. Social links mapped over an array of icons did not provide sufficient context for screen readers. The same was true for buttons with implicit visual meaning (e.g., play icon) but generic text.
+**Action:** When mapping over icon components for interactive links (e.g., social media icons), always structure the data to include explicit label strings for `aria-label` attributes and ensure `focus-visible` styles are included for keyboard accessibility. Add descriptive aria labels to hero buttons with generic CTA text.
