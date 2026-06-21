@@ -74,7 +74,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       expect(hamburgerButton).toBeTruthy();
       
       // Should not have hidden class at mobile viewport
-      const classes = hamburgerButton?.className || '';
+      const classes = hamburgerButton?.className.split(' ') || [];
       expect(classes).not.toContain('hidden');
     });
 
@@ -92,7 +92,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       
       expect(hamburgerButton).toBeTruthy();
       
-      const classes = hamburgerButton?.className || '';
+      const classes = hamburgerButton?.className.split(' ') || [];
       expect(classes).not.toContain('hidden');
     });
 
@@ -110,7 +110,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       
       expect(hamburgerButton).toBeTruthy();
       
-      const classes = hamburgerButton?.className || '';
+      const classes = hamburgerButton?.className.split(' ') || [];
       expect(classes).not.toContain('hidden');
     });
 
@@ -129,7 +129,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       expect(hamburgerButton).toBeTruthy();
       
       // This is critical - at 1023px (one pixel below lg), hamburger should be visible
-      const classes = hamburgerButton?.className || '';
+      const classes = hamburgerButton?.className.split(' ') || [];
       expect(classes).not.toContain('hidden');
     });
 
@@ -153,7 +153,7 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
         
         // Should be rendered (not display: none or hidden class without responsive modifier)
         // Note: lg:hidden would be acceptable since we're below lg breakpoint
-        const classes = hamburgerButton?.className || '';
+        const classes = hamburgerButton?.className.split(' ') || [];
         
         // Button should exist and be present in DOM
         expect(hamburgerButton).not.toBeNull();
