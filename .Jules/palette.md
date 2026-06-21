@@ -1,0 +1,3 @@
+## 2024-06-21 - Icon-only Link Mapping
+**Learning:** When mapping over icon components directly (e.g. `[Facebook, Twitter].map`) to create interactive links, it's easy to forget accessibility labels since the components themselves don't provide inherent text for screen readers. This leads to buttons with no accessible names.
+**Action:** Restructure array mappings for icon-only links to include explicit labels (e.g., `[{ Icon: Facebook, label: 'Facebook' }]`) so that `aria-label` can be properly applied to the anchor/button element. Add `focus-visible` styles to ensure keyboard navigation visibility.
