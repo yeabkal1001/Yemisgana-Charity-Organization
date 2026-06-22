@@ -1,0 +1,3 @@
+## 2024-06-22 - Explicit ARIA Labels for Mapped Social Icons
+**Learning:** When mapping over icon components for interactive links (e.g., social media icons), passing just the icon component is insufficient for accessibility. The mapping array must be structured to include an explicit label string so that each link can be given an `aria-label`. Otherwise, screen readers will announce unhelpful or empty text for icon-only buttons.
+**Action:** Always structure the mapping data to include explicit label strings (e.g., `[{ Icon: Facebook, label: 'Facebook' }]`) and ensure `focus-visible` styles are included on the wrapper element for keyboard accessibility.
