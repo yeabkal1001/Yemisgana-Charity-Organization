@@ -1,0 +1,12 @@
+
+> yemsigana-hero@0.1.0 dev /app
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 528ms
+
+○ Compiling / ...
+ HEAD / 200 in 5.1s (next.js: 4.6s, application-code: 505ms)
+ GET / 200 in 180ms (next.js: 6ms, application-code: 173ms)
