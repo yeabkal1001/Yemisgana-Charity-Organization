@@ -73,9 +73,10 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       // Hamburger button should exist and be rendered
       expect(hamburgerButton).toBeTruthy();
       
-      // Should not have hidden class at mobile viewport
+      // Should not have hidden class at mobile viewport (meaning we check exact class list to avoid false positives with lg:hidden)
       const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      const classesArray = classes.split(' ');
+      expect(classesArray).not.toContain('hidden');
     });
 
     it('should display hamburger button at 480px (mobile)', () => {
@@ -93,7 +94,8 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       expect(hamburgerButton).toBeTruthy();
       
       const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      const classesArray = classes.split(' ');
+      expect(classesArray).not.toContain('hidden');
     });
 
     it('should display hamburger button at 768px (tablet)', () => {
@@ -111,7 +113,8 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       expect(hamburgerButton).toBeTruthy();
       
       const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      const classesArray = classes.split(' ');
+      expect(classesArray).not.toContain('hidden');
     });
 
     it('should display hamburger button at 1023px (just below lg breakpoint)', () => {
@@ -130,7 +133,8 @@ describe('Preservation Property: Mobile Navigation Behavior (UNFIXED CODE)', () 
       
       // This is critical - at 1023px (one pixel below lg), hamburger should be visible
       const classes = hamburgerButton?.className || '';
-      expect(classes).not.toContain('hidden');
+      const classesArray = classes.split(' ');
+      expect(classesArray).not.toContain('hidden');
     });
 
     // Property-based test: Hamburger should be visible at all mobile/tablet widths
