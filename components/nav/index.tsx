@@ -160,14 +160,14 @@ export function Nav() {
               onClick={toggleTheme}
               aria-label="Toggle theme"
               title="Toggle theme"
-              className="hidden sm:inline-flex w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-sm flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
+              className="hidden sm:inline-flex w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-sm flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-lime focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
             >
               {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>
 
             <button
               onClick={() => setMenuOpen(true)}
-              className="lg:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer"
+              className="lg:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-lime focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
               aria-label="Open menu"
               style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
             >
@@ -207,7 +207,7 @@ export function Nav() {
               </div>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-lime focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
                 style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-primary)', background: 'var(--color-surface)' }}
                 aria-label="Close menu"
               >
@@ -217,7 +217,7 @@ export function Nav() {
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
                 title="Toggle theme"
-                className="ml-3 w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
+                className="ml-3 w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-lime focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
               >
                 {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
               </button>
