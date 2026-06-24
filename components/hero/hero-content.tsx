@@ -84,10 +84,10 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
 
         {/* CTAs */}
         <motion.div variants={item} className="flex items-center gap-5 mt-2">
-          <button className="btn-primary">
+          <button className="btn-primary focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-offset-[var(--color-bg-primary)]">
             Our Mission →
           </button>
-          <button className="btn-ghost flex items-center gap-2.5 font-sans">
+          <button className="btn-ghost flex items-center gap-2.5 font-sans focus-visible:ring-2 focus-visible:ring-lime focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]">
             <div className="w-8 h-8 rounded-full border border-[var(--color-border)] group-hover:border-lime flex items-center justify-center transition-colors">
               <Play size={10} className="text-[var(--color-text-primary)] group-hover:text-lime transition-colors ml-[1px]" />
             </div>
