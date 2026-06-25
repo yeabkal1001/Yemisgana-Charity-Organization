@@ -1,0 +1,3 @@
+## $(date +%Y-%m-%d) - Focus Ring Token Usage for Interactive Elements
+**Learning:** Adding accessible focus states (`focus-visible`) requires referencing the project's specific Tailwind design tokens rather than generic outlines, in order to blend seamlessly with the aesthetic. Specifically, this application pairs `ring-lime` with `ring-offset-[var(--color-bg-primary)]`.
+**Action:** When making icon-only links or custom components interactive, always map the array to include explicit `aria-label`s, and apply `focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)] outline-none` to guarantee keyboard accessibility.
