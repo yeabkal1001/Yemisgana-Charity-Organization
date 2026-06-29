@@ -160,9 +160,12 @@ export function About() {
               {values.map((v, i) => (
                 <div
                   key={v.name}
+                  tabIndex={0}
                   onMouseEnter={() => setHoveredValue(i)}
                   onMouseLeave={() => setHoveredValue(null)}
-                  className={`px-4 py-2 rounded-full border text-[10px] font-bold tracking-[0.18em] uppercase transition-all duration-300 cursor-default relative overflow-hidden ${
+                  onFocus={() => setHoveredValue(i)}
+                  onBlur={() => setHoveredValue(null)}
+                  className={`px-4 py-2 rounded-full border text-[10px] font-bold tracking-[0.18em] uppercase transition-all duration-300 cursor-default relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)] ${
                     hoveredValue === i
                       ? 'border-lime text-deep-forest bg-lime scale-[1.03]'
                       : 'border-[var(--color-border)] text-[var(--color-text-muted)] bg-[var(--color-surface)] hover:border-[var(--color-border)]'

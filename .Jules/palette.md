@@ -1,0 +1,3 @@
+## 2024-03-24 - Focus States on Animated Interactive Elements
+**Learning:** When making non-interactive elements (like `div` or `motion.div`) visually interactive (e.g., adding `cursor-pointer` or hover states like `hover:scale-105`), they lose inherent keyboard accessibility. They must explicitly receive `tabIndex={0}`, keyboard event handlers if they trigger actions, and distinct `focus-visible` styles so keyboard users know where they are.
+**Action:** Always include `tabIndex={0}` and a `focus-visible` ring (e.g., `focus-visible:ring-2 focus-visible:ring-[var(--color-lime)]`) whenever adding `cursor-pointer` to non-button elements, and map the `onFocus`/`onBlur` states if they drive animated properties.
