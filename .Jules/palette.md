@@ -1,0 +1,3 @@
+## 2023-10-27 - Global Keyboard Focus States
+**Learning:** Applying focus states inline via Tailwind utility classes (e.g. `focus-visible:ring-2`) directly on components is error-prone, inconsistent, and often missed on interactive elements lacking explicit component wrappers. A project-wide solution applied at the base CSS layer provides better accessibility guarantees.
+**Action:** When working on generic interactives (`a`, `button`) or modifying base styles, define `focus-visible` styles using native CSS variables directly in `app/globals.css`. Ensure special components (like `.btn-primary` and `.btn-ghost`) implement matching `focus-visible` extensions to handle specific visual requirements (like preserving existing box-shadows).
