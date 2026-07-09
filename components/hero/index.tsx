@@ -145,12 +145,12 @@ export function Hero() {
                   Our Mission →
                 </button>
                 <button className="flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] transition-colors">
-                  <div className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center" aria-hidden="true">
                     <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor">
                       <path d="M1 1l8 5-8 5V1z" />
                     </svg>
                   </div>
-                  Watch Story
+                  <span>Watch Story</span>
                 </button>
               </div>
             </motion.div>
