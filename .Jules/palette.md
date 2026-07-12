@@ -1,0 +1,3 @@
+## 2023-10-27 - Global Utility Components Focus States
+**Learning:** Global CSS utility classes (like `.btn-primary` and `.btn-ghost`) used across multiple components can easily lack focus states if not explicitly added alongside their hover states, hindering keyboard accessibility globally. Using nested group-hover classes requires the parent to have the `group` class.
+**Action:** Always verify that generic global button utility classes have an explicit `:focus-visible` state defined with a ring or outline matching the design system, and ensure that parent elements of `group-hover` children actually have the `group` class applied.
