@@ -87,9 +87,9 @@ export function HeroContent({ headline, subHeadline, slideNum, totalSlides, loca
           <button className="btn-primary">
             Our Mission →
           </button>
-          <button className="btn-ghost flex items-center gap-2.5 font-sans">
+          <button className="btn-ghost group flex items-center gap-2.5 font-sans">
             <div className="w-8 h-8 rounded-full border border-[var(--color-border)] group-hover:border-lime flex items-center justify-center transition-colors">
-              <Play size={10} className="text-[var(--color-text-primary)] group-hover:text-lime transition-colors ml-[1px]" />
+              <Play size={10} aria-hidden="true" className="text-[var(--color-text-primary)] group-hover:text-lime transition-colors ml-[1px]" />
             </div>
             <span className="text-[12px] font-semibold">Watch Our Story</span>
           </button>
