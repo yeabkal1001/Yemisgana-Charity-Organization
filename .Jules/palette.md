@@ -1,0 +1,3 @@
+## 2025-07-17 - Keyboard Navigation Focus Indicators
+**Learning:** Adding `focus-visible` styles using arbitrary design tokens (e.g., `focus-visible:ring-[var(--color-lime)]`) significantly improves keyboard accessibility without relying on custom CSS. Additionally, checking for exact classes in tests requires `split(' ')` to prevent false positives when partial matches exist (e.g., `lg:hidden` containing `hidden`).
+**Action:** Always ensure interactive elements (especially links that receive focus naturally) have explicit `focus-visible` states that match the design system tokens, and ensure tests correctly tokenize CSS class strings before asserting against them.
