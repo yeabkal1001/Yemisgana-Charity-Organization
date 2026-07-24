@@ -141,12 +141,12 @@ export function Hero() {
                 Yemisgana Charity Organization builds safe, modern schools for children in the Gurage Zone of Ethiopia.
               </p>
               <div className="flex items-center gap-4 mt-2">
-                <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light transition-all shadow-lg shadow-lime/25">
+                <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)] transition-all shadow-lg shadow-lime/25">
                   Our Mission →
                 </button>
-                <button className="flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] transition-colors">
-                  <div className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center">
-                    <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor">
+                <button className="group flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)] rounded-full transition-colors px-2 py-1">
+                  <div className="w-8 h-8 rounded-full border border-[var(--color-border)] group-hover:border-[var(--color-lime)] flex items-center justify-center transition-colors" aria-hidden="true">
+                    <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" className="group-hover:text-[var(--color-lime)] transition-colors">
                       <path d="M1 1l8 5-8 5V1z" />
                     </svg>
                   </div>
