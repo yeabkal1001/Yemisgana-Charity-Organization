@@ -1,0 +1,3 @@
+## 2025-07-25 - Icon-only Social Links Accessibility Pattern
+**Learning:** When mapping over icon components for interactive links (e.g., social media icons in footers), wrapping an SVG in an anchor tag without text creates an accessibility anti-pattern where screen readers just announce "link". Furthermore, interactive links without explicitly defined `focus-visible` styles prevent clear keyboard navigation.
+**Action:** Always structure icon mapping data to include explicit label strings (`{ Icon: Facebook, label: 'Facebook' }`), apply the label to the parent anchor's `aria-label`, apply `aria-hidden="true"` to the inner SVG, and explicitly add `focus-visible` utility classes using design tokens.
