@@ -213,6 +213,7 @@
   }
 
   /* Primary button */
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-bg-primary), 0 0 0 4px var(--color-lime); }
   .btn-primary {
     background: linear-gradient(180deg, var(--color-lime), var(--color-lime-light));
     color: var(--color-deep-forest);
@@ -264,6 +265,7 @@
   .icon-float:hover { transform: translateY(-6px) rotate(-6deg) scale(1.05); }
 
   /* Ghost button */
+  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-bg-primary), 0 0 0 4px var(--color-lime); }
   .btn-ghost {
     border: 1px solid rgba(255,255,255,0.06);
     background: transparent;
