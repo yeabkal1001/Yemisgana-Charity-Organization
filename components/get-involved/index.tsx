@@ -216,20 +216,25 @@ export function GetInvolved() {
 
           {/* Copyrights and links */}
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 font-sans text-[10px] tracking-wider font-semibold" style={{ color: 'var(--color-text-muted)' }}>
-            <a href="#" className="hover:text-lime transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="hover:text-lime transition-colors duration-300">Terms of Service</a>
+            <a href="#" className="hover:text-lime transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-bg-primary)] rounded-sm">Privacy Policy</a>
+            <a href="#" className="hover:text-lime transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-bg-primary)] rounded-sm">Terms of Service</a>
             <span>© 2026 Yemsigana Charity. All rights reserved.</span>
           </div>
 
           {/* Social icons */}
           <div className="flex items-center gap-3">
-            {[Facebook, Twitter, Instagram].map((Icon, i) => (
+            {[
+              { Icon: Facebook, label: "Facebook" },
+              { Icon: Twitter, label: "Twitter" },
+              { Icon: Instagram, label: "Instagram" }
+            ].map(({ Icon, label }, i) => (
               <a
                 key={i} href="#"
-                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300"
+                aria-label={label}
+                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)] hover:border-[var(--color-lime)] hover:text-lime"
                 style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-muted)' }}
               >
-                <Icon size={13} strokeWidth={2} />
+                <Icon size={13} strokeWidth={2} aria-hidden="true" />
               </a>
             ))}
           </div>
