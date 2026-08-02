@@ -1,0 +1,3 @@
+## 2023-10-24 - Accessible Icon Buttons Focus States
+**Learning:** When creating icon-only buttons in this design system, standard outline defaults often lack contrast or visibility against `var(--color-surface)` and backdrop blur. Also, screen readers can misinterpret decorative icons if they aren't explicitly hidden while the parent manages the `aria-label`.
+**Action:** Always add explicit focus-visible rings using `focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-[var(--color-bg-primary)]` to icon buttons and `aria-hidden="true"` to their internal SVG elements to ensure keyboard visibility and prevent redundant screen reader announcements.
