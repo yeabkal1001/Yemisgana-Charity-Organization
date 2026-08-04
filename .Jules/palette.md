@@ -1,0 +1,3 @@
+## 2023-10-27 - Added Focus Visible States and Missing Group Classes for Accessibility
+**Learning:** Found that custom buttons defined in Tailwind utilities or styled manually were missing explicit keyboard focus states (`focus-visible`). Additionally, Tailwind's `group-hover` relies on the parent having the `group` class, which was missing in the `btn-ghost` component in the hero section, breaking visual interactivity.
+**Action:** When adding global buttons (`.btn-primary`, `.btn-ghost`), always define `:focus-visible` styles using `outline` and `outline-offset` in globals.css. Ensure elements using `group-hover` explicitly include `group`. Added `outline-none` with explicit `focus-visible:ring-2` to interactive icon buttons in navigation.
