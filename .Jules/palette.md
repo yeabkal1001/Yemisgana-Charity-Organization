@@ -1,0 +1,3 @@
+## 2023-10-27 - Global Focus Visible Accessibility
+**Learning:** Found that this app was missing keyboard focus indicators entirely across all interactive elements (`a`, `button`, etc.). This means users navigating with keyboards would lose track of their position on the screen. Adding a global `:focus-visible` outline in `globals.css` using the project's primary accent color (`var(--color-lime)`) resolves this seamlessly without relying on adding `focus-visible:` utility classes to every single component manually.
+**Action:** Always check `app/globals.css` for a global `:focus-visible` rule. If missing, introduce it there to ensure consistent accessibility across the entire app before trying to patch individual components.
