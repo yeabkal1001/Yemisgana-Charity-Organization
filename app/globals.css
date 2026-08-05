@@ -119,6 +119,16 @@
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: var(--color-scrollbar-track); }
   ::-webkit-scrollbar-thumb { background: var(--color-lime); border-radius: 2px; }
+
+  /* Global focus visible for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 /* ─── Utilities ──────────────────────────────────────────────── */
