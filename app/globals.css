@@ -115,6 +115,15 @@
     color: var(--color-bg-primary);
   }
 
+  /* Global focus styles for keyboard accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: var(--color-scrollbar-track); }
