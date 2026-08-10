@@ -1,0 +1,3 @@
+## 2025-02-28 - Added global `:focus-visible` ring and fixed redundant icon screen reader announcements
+**Learning:** This repo lacked basic global focus styling for keyboard navigation, making the app hard to navigate with Tab. I added a global `:focus-visible` outline. Also, interactive buttons containing just a Lucide icon (like the hamburger menu, X close button, and theme toggle) were missing `aria-hidden="true"` on the SVG icons, which caused redundant or confusing announcements when combined with the parent button's `aria-label`.
+**Action:** Implemented a global `:focus-visible` fallback in `globals.css` and patched `components/nav/index.tsx` to add `aria-hidden="true"` to pure icon contents of icon buttons.
