@@ -110,6 +110,13 @@
     overflow-x: hidden;
   }
 
+
+  /* Focus visible accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+
   ::selection {
     background: var(--color-lime);
     color: var(--color-bg-primary);
