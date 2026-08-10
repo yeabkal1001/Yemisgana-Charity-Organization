@@ -162,7 +162,7 @@ export function Nav() {
               title="Toggle theme"
               className="hidden sm:inline-flex w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-sm flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
             >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              {theme === 'dark' ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
             </button>
 
             <button
@@ -171,7 +171,7 @@ export function Nav() {
               aria-label="Open menu"
               style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
             >
-              <Menu size={16} />
+              <Menu size={16} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -211,7 +211,7 @@ export function Nav() {
                 style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-primary)', background: 'var(--color-surface)' }}
                 aria-label="Close menu"
               >
-                <X size={16} />
+                <X size={16} aria-hidden="true" />
               </button>
               <button
                 onClick={toggleTheme}
@@ -219,7 +219,7 @@ export function Nav() {
                 title="Toggle theme"
                 className="ml-3 w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
               >
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                {theme === 'dark' ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
               </button>
             </div>
 
