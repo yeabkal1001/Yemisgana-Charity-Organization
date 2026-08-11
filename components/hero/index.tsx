@@ -166,7 +166,7 @@ export function Hero() {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`rounded-full transition-all duration-500 ${
+            className={`rounded-full transition-all duration-500 focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)] outline-none ${
               i === current
                 ? 'w-8 h-1.5 bg-lime'
                 : 'w-1.5 h-1.5 bg-[var(--color-text-muted)] hover:bg-[var(--color-text-primary)]'
