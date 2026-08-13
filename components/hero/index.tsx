@@ -144,7 +144,7 @@ export function Hero() {
                 <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light transition-all shadow-lg shadow-lime/25">
                   Our Mission →
                 </button>
-                <button className="flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] transition-colors">
+                <button className="group flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] transition-colors">
                   <div className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center">
                     <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor">
                       <path d="M1 1l8 5-8 5V1z" />
