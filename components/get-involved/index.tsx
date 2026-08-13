@@ -223,13 +223,17 @@ export function GetInvolved() {
 
           {/* Social icons */}
           <div className="flex items-center gap-3">
-            {[Facebook, Twitter, Instagram].map((Icon, i) => (
+            {[
+              { Icon: Facebook, name: 'Facebook' },
+              { Icon: Twitter, name: 'Twitter' },
+              { Icon: Instagram, name: 'Instagram' },
+            ].map(({ Icon, name }) => (
               <a
-                key={i} href="#"
-                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300"
-                style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-muted)' }}
+                key={name} href="#"
+                aria-label={name}
+                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-lime)] hover:text-[var(--color-lime)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-lime)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
               >
-                <Icon size={13} strokeWidth={2} />
+                <Icon size={13} strokeWidth={2} aria-hidden="true" />
               </a>
             ))}
           </div>
