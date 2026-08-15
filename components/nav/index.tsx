@@ -152,7 +152,7 @@ export function Nav() {
               whileTap={{ scale: 0.98 }}
               className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] uppercase tracking-wider rounded-full hover:bg-lime-light transition-all duration-300 shadow-[0_4px_20px_rgba(var(--color-lime-rgb),0.25)] hover:shadow-[0_4px_25px_rgba(var(--color-lime-rgb),0.4)]"
             >
-              Donate Now <ArrowRight size={12} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform duration-300" />
+              Donate Now <ArrowRight size={12} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform duration-300" aria-hidden="true" />
             </motion.a>
 
             {/* Theme toggle */}
@@ -162,7 +162,7 @@ export function Nav() {
               title="Toggle theme"
               className="hidden sm:inline-flex w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] backdrop-blur-sm flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
             >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              {theme === 'dark' ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
             </button>
 
             <button
@@ -171,7 +171,7 @@ export function Nav() {
               aria-label="Open menu"
               style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
             >
-              <Menu size={16} />
+              <Menu size={16} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -211,7 +211,7 @@ export function Nav() {
                 style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-primary)', background: 'var(--color-surface)' }}
                 aria-label="Close menu"
               >
-                <X size={16} />
+                <X size={16} aria-hidden="true" />
               </button>
               <button
                 onClick={toggleTheme}
@@ -219,7 +219,7 @@ export function Nav() {
                 title="Toggle theme"
                 className="ml-3 w-10 h-10 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-center text-[var(--color-text-primary)] hover:border-[var(--color-lime)] hover:bg-[var(--color-surface-hover)] transition-all duration-300"
               >
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                {theme === 'dark' ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
               </button>
             </div>
 
