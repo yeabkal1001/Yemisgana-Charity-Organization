@@ -1,0 +1,6 @@
+interface:
+  display_name: "Yemisgana Charity Organization"
+  short_description: "Repo-specific patterns and workflows for Yemisgana-Charity-Organization"
+  default_prompt: "Use the Yemisgana-Charity-Organization repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
