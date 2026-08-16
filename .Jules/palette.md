@@ -1,0 +1,3 @@
+## 2024-05-01 - Avoid Inline Base Styles for Interactive Elements
+**Learning:** Inline styles (e.g., `style={{ border: ... }}`) override Tailwind pseudo-classes (`hover:border-...`), preventing interactive UX enhancements like hover or focus states from rendering correctly. Furthermore, when mapping interactive components like icons, failing to structure the data with explicit string labels leads to missing `aria-label`s.
+**Action:** Always map interactive icon elements using an array of objects `{ Icon, label }` to ensure `aria-label` can be provided cleanly. Always remove inline base styles and convert them to equivalent Tailwind utility classes to allow interactive styling (like `focus-visible` and `hover`) to function as intended.
