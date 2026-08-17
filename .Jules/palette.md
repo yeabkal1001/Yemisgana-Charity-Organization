@@ -1,0 +1,3 @@
+## 2024-08-17 - Add Global Focus Visible Styles for Keyboard Accessibility
+**Learning:** The application lacks global keyboard focus styles, making it difficult for keyboard users to navigate interactive elements. Providing global `:focus-visible` styles is essential for accessibility without negatively impacting mouse/touch users. The approved method for global keyboard accessibility is implementing a global `:focus-visible` rule in `app/globals.css` using design tokens.
+**Action:** Implemented a global `:focus-visible` rule in `app/globals.css` targeting all standard interactive elements (`a`, `button`, `input`, `textarea`, `select`, `[tabindex]:not([tabindex="-1"])`). Used existing `--color-lime` for the focus ring.
