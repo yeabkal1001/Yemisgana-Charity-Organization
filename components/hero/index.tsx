@@ -141,12 +141,12 @@ export function Hero() {
                 Yemisgana Charity Organization builds safe, modern schools for children in the Gurage Zone of Ethiopia.
               </p>
               <div className="flex items-center gap-4 mt-2">
-                <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light transition-all shadow-lg shadow-lime/25">
+                <button className="px-5 py-2.5 bg-lime text-deep-forest font-black text-[12px] rounded-full hover:bg-lime-light transition-all shadow-lg shadow-lime/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime focus-visible:outline-offset-2">
                   Our Mission →
                 </button>
-                <button className="flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] transition-colors">
+                <button className="flex items-center gap-2 text-[var(--color-text-muted)] text-[12px] font-semibold hover:text-[var(--color-text-primary)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime focus-visible:outline-offset-2">
                   <div className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center">
-                    <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor">
+                    <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" aria-hidden="true">
                       <path d="M1 1l8 5-8 5V1z" />
                     </svg>
                   </div>
